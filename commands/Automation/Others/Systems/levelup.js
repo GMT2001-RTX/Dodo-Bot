@@ -31,10 +31,9 @@ $onlyIf[$guildChannelExists[$guildID;$getGuildVar[levelingmessagechannel]]==true
 $onlyIf[$channelHasPerms[$getGuildVar[levelingmessagechannel];$clientID;ViewChannel;SendMessages]==true;]
 
 
-$let[content;$advancedReplace[$getGuildVar[levelingmessage];<member.mention>;<@$authorID>;<member.username>;$username;<oldlevel>;$getMemberVar[previouslevel];<newlevel>;$getMemberVar[level];<member.Displayname>;$userDisplayname]]
 
 $sendMessage[$getGuildVar[levelingmessagechannel];
-$get[content]
+$callFunction[Levelingmessage;$getGuildVar[levelingmessage]]
 ]
 
 

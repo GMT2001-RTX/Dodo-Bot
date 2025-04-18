@@ -10,13 +10,13 @@ $ephemeral
 $interactionUpdate[
 $title[Changes]
 $description[
-* Build info is now a flag as part of \`version\` command
-   * To access the info, run \`$getGuildVar[prefix]version --buildinfo\` to do so!
-* Support for returning banner link has been added to \`user\` command
-* Slightly updated \`userinfo\` design to use markdowns
-* Updated Github links to use the new username
-* Ported the uncompact mode for perms list for integration logs from 2.2.2
-* Bumped ForgeScript version to \`2.1.0\`
+* Bumped ForgeScript version to \`2.2.0\`
+* Added \`<user.globalname>\` for Welcomer, Leave and Leveling
+* The buttons for moving the Snake in \`snake\` should now be easier to see
+* **Welcomer** & **Leave**: make \`<username>\` return usernames with discriminator for bots
+* Added a command called \`banner\`
+* \`userinfo\` now checks if a bot account is verified
+* Increased page limit in \`leaderboard\` to 20
 ]
 $if[$getGlobalVar[pre_release]==on;
 $attachment[./assets/warning.png;warning.png]
@@ -43,7 +43,9 @@ $ephemeral
 $interactionUpdate[
 $title[Bug Fixes]
 $description[
-* Fixed a problem in \`canary\` that would have half of the content out of it's place
+* Messages from \`leveling\`, \`welcomer\` and \`leave\` are now fully consistent between test and normal ones
+* (Source Code) Fixed a leftover of the old Github username in \`README\` file
+* Improved the grammar of empty leaderboard error seen in \`leaderboard\` cmd
 ]
 $if[$getGlobalVar[pre_release]==on;
 $attachment[./assets/warning.png;warning.png]
@@ -70,12 +72,13 @@ $ephemeral
 $interactionUpdate[
 $title[Other]
 $description[
-* \`version\` command will now display the Revision if there any
-* "Current setting(s)" seen in some places has been renamed to "Current Setup"
-* (Source Code) changed the placing for local assets used in the bot
-* (Source Code) Revision will now also appear on startup message (for consoles)
-* Prefix is no longer case sensitive
-* Other minor adjustments have been added and renamed "Gitbuilds" to "Canary" (including the command)
+* Added support for responding to message edits triggering commands
+* Slightly updated the ordering of sections in \`stats\` command
+* (Source Code) Replaced the package \`dotenv\` with \`@dotenvx/dotenvx\` for better Env support
+* Renamed several placeholders from \`Welcomer\`, \`Leave\` and \`Leveling\` to use \`user\` instead of \`member\`
+* (Source Code) The setup file has been rewritten in Javascript
+* \`--buildinfo\` for \`version\`: Make the displayed build branch hyperlinked
+* Added Green Apple as part of the foods to catch in \`snake\` command
 ]
 $if[$getGlobalVar[pre_release]==on;
 $attachment[./assets/warning.png;warning.png]

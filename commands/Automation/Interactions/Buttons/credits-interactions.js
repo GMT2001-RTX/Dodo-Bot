@@ -40,7 +40,7 @@ $description[
 * **@tryforge/forge.db** - For enabling variables in fs.
 * **discord-gamecord** - Most of the game commands were made using this package
 * **better-sqlite3** - Database used in the bot.
-* **dotenv** - For enabling environment variables support in local hosting
+* **@dotenvx/dotenvx** - For enabling environment variables support in local hosting
 ]
 $color[$getGlobalVar[embedcolor]]
 $addActionRow

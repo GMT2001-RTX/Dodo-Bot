@@ -16,7 +16,8 @@ $wait[5000]
 $interactionFollowUp[Done!]
 $wait[4000]
 $clientDestroy
-`},{
+`
+},{
     type: "interactionCreate",
     allowedInteractionTypes: ["button"],
     code: `

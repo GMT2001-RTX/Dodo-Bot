@@ -24,7 +24,7 @@ $attachment[./assets/magnifying-glass-tilted-left.png;magnifying-glass.png]
 $author[Command info looker;attachment://magnifying-glass.png]
 $title[$get[actualname]]
 $description[$env[cmdinfo;description]]
-$addField[Permissions required;$callFunction[commandperms;$toLowerCase[$message]]]
+$addField[Permission(s);$callFunction[commandperms;$toLowerCase[$message]]]
 $addField[Aliases;$get[aliases]]
 $color[$getGlobalVar[embedcolor]]
 $if[$callFunction[commandflags;$toLowerCase[$message]]!=;

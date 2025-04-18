@@ -1,9 +1,9 @@
-const config = require("./config.json");
+const config = require("./config.js");
 const functions = require("./handlers/functions.js");
 
 const { ForgeClient } = require("@tryforge/forgescript")
 const { ForgeDB } = require("@tryforge/forge.db")
-require('dotenv').config() // Enable env support in local hosting
+require('@dotenvx/dotenvx').config({ignore: ['MISSING_ENV_FILE'], strict: false, quiet: true}) // Enable env support in local hosting
 
 // Client initialization
    const client = new ForgeClient({
@@ -18,7 +18,8 @@ require('dotenv').config() // Enable env support in local hosting
     ],
    mobile: config.MobileStatus, // Mobile status
    disableConsoleErrors: config.disableConsoleErrors, // Console errors option
-   prefixCaseInsensitive: config.prefixCaseInsensitive // Whether or not prefix should be case sensitive
+   prefixCaseInsensitive: config.prefixCaseInsensitive, // Whether or not prefix should be case sensitive
+   respondOnEdit: config.respondOnEdit // Whether or not to respond to message edits triggering commands
 })
 
 // Handlers

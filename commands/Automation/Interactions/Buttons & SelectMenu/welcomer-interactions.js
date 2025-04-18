@@ -213,11 +213,11 @@ $onlyIf[$customID==welcomermessagesetup;]
 $showModal
 $if[$getGuildVar[welcomertype]==embed;
 $modal[welcomerembedmodalsetup;Set Message]
-$addTextInput[messageInput;Message to use;Paragraph;true;e.g, Welcome to the server <member.username>!;$getGuildVar[welcomermessage];0;3750]
+$addTextInput[messageInput;Message to use;Paragraph;true;e.g, Welcome to the server <user.username>!;$getGuildVar[welcomermessage];0;3750]
 $addTextInput[embedcolorInput;Embed color to use;Short;true;e.g, #1F8B4C;$getGuildVar[welcomermessageembedcolor];0;7]
 ;
 $modal[welcomertextmodalsetup;Set Message]
-$addTextInput[messageInput;Message to use;Paragraph;true;e.g, Welcome to the server <member.username>!;$getGuildVar[welcomermessage];0;3750]
+$addTextInput[messageInput;Message to use;Paragraph;true;e.g, Welcome to the server <user.username>!;$getGuildVar[welcomermessage];0;3750]
 ]
 `
 },{
@@ -252,8 +252,7 @@ $onlyIf[$customID==welcomermessagepreview;]
 
 
 $let[servericon;$advancedReplace[$checkCondition[$guildIcon==];true;$userAvatar[$clientID];false;$guildIcon]]
-$let[content;$advancedReplace[$getGuildVar[welcomermessage];<member.username>;$username;<member.mention>;<@$authorID>;<member.id>;$authorID;<owner.username>;$guildOwnerID;<owner.id>;$guildOwnerID;<server.name>;$serverName;<server.id>;$guildID;<server.createdAt>;<t:$trunc[$divide[$guildCreatedAt;1000]]:f>;<server.totalMembers>;$guildMemberCount;<member.position>;$ordinal[$memberJoinPosition];<member.Displayname>;$userDisplayname]]
-
+$let[content;$callFunction[Welcomemessage;$getGuildVar[welcomermessage]]]
 
 
 $interactionReply[$if[$or[$charCount[$getGuildVar[welcomermessage]]>=2000;$getGuildVar[welcomertype]==embed];
@@ -326,11 +325,12 @@ $onlyIf[$customID==welcomerplaceholderlist;]
 $interactionUpdate[$title[Placeholders]
 $description[Placeholders are a way to make Welcomer messages unique! Choose a one available from this list.]
 $addField[Member-related;
-\`<member.username>\` - Returns the member's username
-\`<member.mention>\` - Pings the member
-\`<member.id>\` - Returns the member's id
-\`<member.position>\` - Returns the position number of the member
-\`<member.DisplayName>\` - Returns the member's Display name
+\`<user.username>\` - Returns the member's username
+\`<user.mention>\` - Pings the member
+\`<user.id>\` - Returns the member's id
+\`<user.position>\` - Returns the position number of the member
+\`<user.displayname>\` - Returns the member's Display name
+\`<user.globalname>\` - Returns the member's global name (or username if there isn't any)
 ]
 $addField[Server-related;
 \`<owner.username>\` - Returns the server owner's username

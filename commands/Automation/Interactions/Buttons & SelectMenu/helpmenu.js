@@ -99,7 +99,7 @@ $ephemeral
 $addField[**Info**;
 \`userinfo\`, \`serverinfo\`]
 $addField[**Miscellaneous**;
-\`randomcolor\`, \`avatar\`, \`suggest\`]
+\`randomcolor\`, \`avatar\`, \`banner\`, \`morse\`, \`suggest\`]
     $color[$getGlobalVar[embedcolor]]
     $addActionRow
     $addStringSelectMenu[helpmenu_$authorID;Select a module;false;1;1]

@@ -263,7 +263,7 @@ $onlyIf[$customID==levelingmessagesetup;]
 
 $showModal
 $modal[levelingmessagemodalsetup;Set Message]
-$addTextInput[messageInput;Message to use;Paragraph;true;e.g, <member.username> has Leveled up!;$getGuildVar[levelingmessage];0;200]
+$addTextInput[messageInput;Message to use;Paragraph;true;e.g, <user.username> has Leveled up!;$getGuildVar[levelingmessage];0;200]
 
 `
 },{
@@ -279,10 +279,9 @@ $ephemeral]`
     code: `
 $onlyIf[$customID==levelingmessagepreview;]
 
-$let[content;$advancedReplace[$getGuildVar[levelingmessage];<member.mention>;<@$authorID>;<member.username>;$username;<oldlevel>;$getMemberVar[previouslevel];<newlevel>;$getMemberVar[level];<member.Displayname>;$userDisplayname]]
 
 $interactionReply[
- $get[content]
+$callFunction[Levelingmessage;$getGuildVar[levelingmessage]]
 $ephemeral
 ]
 `
@@ -621,9 +620,10 @@ $onlyIf[$customID==levelingplaceholderlist;]
 $interactionUpdate[$title[Placeholders]
 $description[Placeholders are a way to make Welcomer messages unique! Choose a one available from this list.]
 $addField[Member-related;
-\`<member.username>\` - Returns the member's username
-\`<member.mention>\` - Pings the member
-\`<member.Displayname>\` - Returns the member's display name
+\`<user.username>\` - Returns the member's username
+\`<user.mention>\` - Pings the member
+\`<user.displayname>\` - Returns the member's display name
+\`<user.globalname>\` - Returns the member's global name (or username if there isn't any)
 ]
 $addField[Leveling-related;
 \`<newlevel>\` - Returns the member's new level

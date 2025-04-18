@@ -14,11 +14,13 @@ $let[user;$findUser[$message;true]]
 $let[username;$advancedReplace[$checkCondition[$callFunction[hasusertag;$get[user]]==true];true;$userTag[$get[user]];false;$username[$get[user]]]]
 $let[accounttype;$advancedReplace[$checkCondition[$isBot[$get[user]]==true];true;Bot;false;Human]]
 $let[dmsstatus;$advancedReplace[$checkCondition[$isUserDMEnabled[$get[user]]==true];true;Enabled;false;Disabled]]
+$let[botverified;$advancedReplace[$checkCondition[$isBotVerified[$get[user]]==true];true;Yes;false;No]]
 
 $title[$get[username]'s information;$callFunction[userURL;$get[user]]]
 $addField[**General**;
 * **Joined Discord on:** <t:$trunc[$divide[$userCreatedAt[$get[user]];1000]]:f>
-* **Account type:** $get[accounttype]
+* **Account type:** $get[accounttype]$if[$isBot[$get[user]]==true;
+* **Bot Verified:** $get[botverified]]
 * **ID:** $get[user]
 ;true]
 $addField[**Other**;

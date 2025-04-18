@@ -23,13 +23,13 @@ const Game = new Snake({
   emojis: {
     board: '⬛',
     food: '🍎',
-    up: '⬆️', 
-    down: '⬇️',
-    left: '⬅️',
-    right: '➡️',
+    up: '👆',
+    down: '👇',
+    left: '👈',
+    right: '👉',
   },
   snake: { head: '🟢', body: '🟩', tail: '🟢', skull: '💀'},
-  foods: \\['🍎', '🍇', '🍊', '🫐', '🥕', '🥝', '🌽'\\],
+  foods: \\['🍎', '🍇', '🍊', '🫐', '🥕', '🥝', '🌽', '🍏'\\],
   stopButton: 'Stop',
   timeoutTime: 60000,
   playerOnlyMessage: 'Only {player} can use these buttons.'

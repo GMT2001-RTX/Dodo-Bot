@@ -17,7 +17,7 @@ It's also used to try new techniques before being ported to the non-Rebase versi
 * **[V1](https://github.com/ddodogames/Dodo-Bot/tree/v1)**: The discontinued version of Dodo-Bot. It had a bad start with bunch of bugs due to me being newbie in aoi.js at the time.
 * **[V2 (current)](https://github.com/ddodogames/Dodo-Bot/tree/v2)**: The current version of the bot, maintained with lot of bug fixes and has alright features.
 * **[V3](https://github.com/ddodogames/Dodo-Bot/tree/v3)**: Intended to try out aoi.js v7. Currently on pause
-* **[canary](https://github.com/ddodogames/Dodo-Bot/tree/canary)**: Development builds of v2. Not recommended for public use. More information can be found [here](https://dodogames7.github.io/dodo-bot-site/advanced/canary/).
+* **[canary](https://github.com/ddodogames/Dodo-Bot/tree/canary)**: Development builds of v2. Not recommended for public use. More information can be found [here](https://ddodogames.github.io/dodo-bot-site/advanced/canary/).
 * **[canary-rebase](https://github.com/ddodogames/Dodo-Bot/tree/canary-rebase)**: Development builds of Rebase. Not recommended for public use just like pre-release builds of v2.
 * **[rebase](https://github.com/ddodogames/Dodo-Bot/tree/rebase)**: ForgeScript version of the bot. It's mostly made as a emergency build.
 
@@ -26,8 +26,8 @@ You can host Rebase version on any Host as long as you meet the following Requir
 * Node.js v16 or later is required as older versions are not supported
 * A host ready to handle Bot's Features (Obviously)
 
-# config.json
-Dodo-Bot allows you to change some options before turning it on. To do this, check out the `config.json` file present in the source code itself which contains available options to change from!
+# config.js
+Dodo-Bot allows you to change some options before turning it on. To do this, check out the `config.js` file present in the source code itself which contains available options to change from!
 
 # Credits
 Most of code belongs to me (besides the ones credited in credits command). You can also credit me using my discord username: "dodogames".

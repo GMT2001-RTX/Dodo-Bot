@@ -8,7 +8,7 @@ info: {
 aliases: ["exec"],
 type: "messageCreate",
 code: `$onlyIf[$checkContains[$clientOwnerID[$getGlobalVar[AllowBotMembers]];$authorID]==true;]
-$onlyIf[$message!=;Send something to execute.]
+$onlyIf[$message!=;Please provide a command.]
 $if[$charCount[$exec[$message]]>=2000;
 $attachment[$exec[$message];output.txt;true]
 ;
