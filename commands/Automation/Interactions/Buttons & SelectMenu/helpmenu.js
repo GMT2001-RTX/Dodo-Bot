@@ -13,7 +13,7 @@ $ephemeral
 \`about\`, \`canary\`, \`report\`, \`perms\`, \`settings\`, \`commandinfo\`
 ]
     $addField[**About the bot**;
-\`ping\`, \`rebase\`, \`version\`, \`stats\`, \`credits\`, \`invite\`
+\`ping\`, \`version\`, \`stats\`, \`credits\`, \`invite\`
     ]
     $color[$getGlobalVar[embedcolor]]
     $addActionRow
@@ -127,7 +127,7 @@ $ephemeral
 \`eval\`, \`exec\`, \`update\`, \`serverlist\`, \`jseval\`, \`readfile\`
     ]
 $addField[**Bot Management**;
-\`shutdown\`, \`dev-panel\` \`set-customstatus\`]
+\`dev-panel\`, \`wipedb\`, \`shutdown\`, \`set-customstatus\`]
     $color[$getGlobalVar[embedcolor]]
     $addActionRow
     $addStringSelectMenu[helpmenu_$authorID;Select a module;false;1;1]

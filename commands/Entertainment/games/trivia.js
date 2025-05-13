@@ -2,6 +2,7 @@ module.exports = {
 name: "trivia",
 info: {
         description: "Starts a game of Trivia (pass the flag `--settings` to open the settings).",
+        usage: "`trivia (flag)`",
         perms: "`SendMessages`",
         flags: "`--settings`"
 },
@@ -20,8 +21,8 @@ $addField[Current Setup;
 $color[$getGlobalVar[embedcolor]]
 $addActionRow
 $addStringSelectMenu[triviasettings_$authorID;Select a option;false;1;1]
-$addOption[Type;How the Game should start?;triviatypeoption;;false]
-$addOption[Difficulty;How hard the Game should be?;triviadifficultyoption;;false]
+$addOption[Type;How the game should start?;triviatypeoption;;false]
+$addOption[Difficulty;How hard the game should be?;triviadifficultyoption;;false]
 ;
 $!djsEval[const { Trivia } = require('discord-gamecord');
 

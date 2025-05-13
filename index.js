@@ -11,7 +11,7 @@ require('@dotenvx/dotenvx').config({ignore: ['MISSING_ENV_FILE'], strict: false,
     "prefixes": ["$getGuildVar[prefix]"], // Custom prefix system
     "events": ["ready", "error", "interactionCreate", "messageCreate", "messageDelete", "messageUpdate", "guildMemberAdd", "guildMemberRemove", "guildBanAdd", "guildBanRemove", "guildCreate"], // Setup ForgeScript events
     "extensions": [ // Load extensions
-        new ForgeDB({
+    new ForgeDB({
     type: "better-sqlite3",
     database: "./database/forge.db"
     })

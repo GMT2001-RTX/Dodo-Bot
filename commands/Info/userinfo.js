@@ -2,6 +2,7 @@ module.exports = {
 name: "userinfo",
 info: {
 description: "Returns information about you (or the user if mentioned).",
+usage: "`userinfo (user)`",
 perms: "`SendMessages`"
 },
 type: "messageCreate",

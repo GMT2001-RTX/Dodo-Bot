@@ -2,6 +2,7 @@ module.exports = {
 name: "flood",
 info: {
         description: "Starts a game of Flood (pass the flag `--settings` to open the settings).",
+        usage: "`flood (flag)`",
         perms: "`SendMessages`",
         flags: "`--settings`"
 },
@@ -19,7 +20,7 @@ $addField[Current Setup;
 $color[$getGlobalVar[embedcolor]]
 $addActionRow
 $addStringSelectMenu[floodsettings_$authorID;Select a option;false;1;1]
-$addOption[Difficulty;How hard the Game should be?;flooddifficultyoption;;false]
+$addOption[Difficulty;How hard the game should be?;flooddifficultyoption;;false]
 ;
 $!djsEval[const { Flood } = require('discord-gamecord')
 

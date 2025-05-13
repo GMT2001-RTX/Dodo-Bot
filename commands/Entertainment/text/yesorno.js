@@ -3,6 +3,7 @@ name: "yesorno",
 type: "messageCreate",
 info: {
  description: "Answers with either yes or no to your message.",
+ usage: "`yesorno <text>`",
  perms: "`SendMessages`"
 },
 code: `

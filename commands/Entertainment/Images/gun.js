@@ -2,6 +2,7 @@ module.exports = [{
 name: "gun",
 info: {
         description: "Makes the user's profile picture hold a gun straight at you.",
+        usage: "`gun (user)`",
         perms: ["`SendMessages`","`AttachFiles`"]
 },
 type: "messageCreate",

@@ -226,7 +226,10 @@ $ephemeral
 
 $interactionReply[
 $title[Embed color]
-$description[This option allows you to change the current Embed color used across all the commands of the bot!]
+$description[This option allows you to change the current embed color used across all the commands of the bot!
+
+-# You can also use "random" for the bot to set a random embed color instead
+]
 $addField[Current Setup;$getGlobalVar[embedcolor]]
 $color[Yellow]
 $addActionRow
@@ -255,16 +258,18 @@ $addTextInput[embedcolorInput;Embed color to use;Short;true;#1F8B4C;$getGlobalVa
 $let[title;$getEmbeds[$channelID;$messageID;0;title;0]]
 $let[description;$getEmbeds[$channelID;$messageID;0;description;0]]
 $let[fieldname;$getEmbeds[$channelID;$messageID;0;fieldName;0]]
+$let[colorinput;$advancedReplace[$checkCondition[$startsWith[$input[embedcolorInput];random]==true];true;$callFunction[randomColor];false;$input[embedcolorInput]]]
 
-$onlyIf[$startsWith[$input[embedcolorInput];#]==true;$interactionReply[Your hex code must start with \`#\`.
+
+$onlyIf[$startsWith[$get[colorinput];#]==true;$interactionReply[Your hex code must start with \`#\`.
 $ephemeral]
 ]
 
-$onlyIf[$isValidHex[$input[embedcolorInput]]==true;$interactionReply[The hex code seems to be invalid. Please double check and try again.
+$onlyIf[$isValidHex[$get[colorinput]]==true;$interactionReply[The hex code seems to be invalid. Please double check and try again.
 $ephemeral]
 ]
 
-$setGlobalVar[embedcolor;$input[embedcolorInput]]
+$setGlobalVar[embedcolor;$get[colorinput]]
 
 $interactionUpdate[
 $title[$get[title]]
@@ -277,7 +282,7 @@ $addButton[previewembedcolor;Preview;Secondary]
 $addButton[resetcurrentembedcolor;Reset;Secondary]
 ]
 
-$interactionFollowUp[Successfully set the Embed color!
+$interactionFollowUp[Successfully set the embed color!
 $ephemeral]`
 },{
     type: "interactionCreate",
@@ -562,7 +567,7 @@ $interactionReply[
 $title[Show build info]
 $description[When enabled, a button labeled "Build Info" will show up in \`stats\` command. By default, this is enabled for Pre-release builds besides Beta ones.
 
-If you think this is sensitive information then press the "Toggle" button to disable it (if it was enabled by default).]
+If you don't want it enabled then press the "Toggle" button to disable it (if it was enabled by default).]
 $addField[Current Setup;$get[showbuildinfo]]
 $color[Yellow]
 $addActionRow
@@ -713,9 +718,9 @@ $ephemeral
 
 $interactionReply[
 $title[Backup Database]
-$addField[Why Backups?;In general, it is recommended to create a backup of the database to always ensure that when something bad happens, you can use your previous copy of the database to restore all the lost data!
+$addField[Why should i backup?;In general, it is recommended to create a backup of the database to always ensure that when something bad happens, you can use your previous copy of the database to restore all the lost data!
 ]
-$addField[Getting started;make a quick backup, press the button "Create", a new duplicated file of your database will appear with random letters and numbers.
+$addField[Getting started;To make a quick backup, press the button "Create". A new duplicated file of your database will appear with date and time.
 ]
 $addField[How to use it?;To use your backup, rename the file to \`forge.db\` and replace the one in \`database\` folder with the backup file! Reboot the bot and the data should be there!
 ]
@@ -730,7 +735,7 @@ $ephemeral
     allowedInteractionTypes: ["button"],
     code: `$onlyIf[$customID==createdatabasebackupbutton;]
 
-    $copyFile[database/forge.db;backup-$randomString[6]-forge.db]
+    $copyFile[database/forge.db;backup-$month/$day/$year-$minute$second-forge.db]
     $interactionReply[Created a backup under your root directory!
     $ephemeral
     ]
@@ -739,7 +744,10 @@ $ephemeral
     type: "interactionCreate",
     allowedInteractionTypes: ["button"],
     code: `
-    $onlyIf[$customID==leaveaserverbutton;]
+    $onlyIf[$advancedTextSplit[$customID;_;0]==leaveaserverbutton;]
+    $onlyIf[$advancedTextSplit[$customID;_;1]==$authorID;$interactionReply[You're not the author of this interaction.
+    $ephemeral
+    ]]
 
     $showModal
     $modal[leaveaservermodalprompt;Leave a server]

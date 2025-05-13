@@ -2,6 +2,7 @@ module.exports = {
     name: "jseval",
     info: {
         description: "Executes codes for testing (in djs only)",
+        usage: "`jseval <code>`",
         perms: ["`SendMessages`"],
         dev: "true"
     },

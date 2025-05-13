@@ -41,7 +41,7 @@ $onlyIf[$advancedTextSplit[$customID;_;1]==$authorID;$interactionReply[You're no
 $ephemeral
 ]]
 
-$let[currentchannel;$advancedReplace[$checkCondition[$getGuildVar[levelingmessagechannel;$guildID]!=];true;<#$getGuildVar[levelingmessagechannel;$guildID]> (\`$getGuildVar[levelingmessagechannel;$guildID]\`);false;No channel set]]
+$let[currentchannel;$advancedReplace[$checkCondition[$getGuildVar[levelupmessagechannel;$guildID]!=];true;<#$getGuildVar[levelupmessagechannel;$guildID]> (\`$getGuildVar[levelupmessagechannel;$guildID]\`);false;No channel set]]
 $let[levelingmessagefeature;$advancedReplace[$getGuildVar[levelingmessagefeature];off;Disabled;on;Enabled]]
 $let[levelingresetonleave;$advancedReplace[$getGuildVar[levelingresetonleave];off;Disabled;on;Enabled]]
 
@@ -63,6 +63,7 @@ $addActionRow
 $addButton[levelingchannelsetup;Channel;Secondary]
 $addButton[levelingmessagecategory;Message;Secondary]
 $addButton[levelingplaceholderlist;Placeholders;Secondary]
+$addButton[levelingresetbutton;Reset;Danger;⚠️]
 $ephemeral
 ]
 `
@@ -72,7 +73,7 @@ $ephemeral
     code: `
 $onlyIf[$customID==levelingsettingshome;]
 
-$let[currentchannel;$advancedReplace[$checkCondition[$getGuildVar[levelingmessagechannel;$guildID]!=];true;<#$getGuildVar[levelingmessagechannel;$guildID]> (\`$getGuildVar[levelingmessagechannel;$guildID]\`);false;No channel set]]
+$let[currentchannel;$advancedReplace[$checkCondition[$getGuildVar[levelupmessagechannel;$guildID]!=];true;<#$getGuildVar[levelupmessagechannel;$guildID]> (\`$getGuildVar[levelupmessagechannel;$guildID]\`);false;No channel set]]
 $let[levelingmessagefeature;$advancedReplace[$getGuildVar[levelingmessagefeature];off;Disabled;on;Enabled]]
 $let[levelingresetonleave;$advancedReplace[$getGuildVar[levelingresetonleave];off;Disabled;on;Enabled]]
 
@@ -94,15 +95,154 @@ $addActionRow
 $addButton[levelingchannelsetup;Channel;Secondary]
 $addButton[levelingmessagecategory;Message;Secondary]
 $addButton[levelingplaceholderlist;Placeholders;Secondary]
+$addButton[levelingresetbutton;Reset;Danger;⚠️]
 ]
 `
 },{
     type: "interactionCreate",
     allowedInteractionTypes: ["button"],
     code: `
+    $onlyIf[$customID==levelingresetbutton;]
+
+    $interactionReply[
+    $ephemeral
+    $title[How do you want to reset?]
+    $description[Choose any of the 2 buttons below.]
+    $color[$getGlobalVar[embedcolor]]
+    $addActionRow
+    $addButton[levelingfullresetoption;Full Reset;Secondary]
+    $addButton[levelingresetspecificusers;Only for specific users;Secondary]
+    ]
+    `
+},{
+    type: "interactionCreate",
+    allowedInteractionTypes: ["button"],
+    code: `
+    $onlyIf[$customID==levelingfullresetoption;]
+
+    $interactionUpdate[
+        $title[Reset for everyone?]
+        $description[Once you click "Yes", there will be no way to recover the progress for everyone.]
+        $color[$getGlobalVar[embedcolor]]
+        $addActionRow
+        $addButton[levelingfullresetconfirm;Yes;Secondary]
+        $addButton[levelingfullresetdeny;No;Secondary]
+    ]
+    `
+},{
+    type: "interactionCreate",
+    allowedInteractionTypes: ["button"],
+    code: `
+    $onlyIf[$customID==levelingfullresetconfirm;]
+
+    $deleteRecords[level;;member;;$guildID]
+    $deleteRecords[previouslevel;;member;;$guildID]
+    $deleteRecords[xp;;member;;$guildID]
+    $deleteRecords[xpLimit;;member;;$guildID]
+
+    $interactionUpdate[
+    Successfully reset progress for everyone!
+    ]
+    `
+},{
+    type: "interactionCreate",
+    allowedInteractionTypes: ["button"],
+    code: `
+    $onlyIf[$customID==levelingfullresetdeny;]
+
+    $interactionUpdate[
+    Alright, all users will keep their progress then.
+    ]
+    `
+},{
+    type: "interactionCreate",
+    allowedInteractionTypes: ["button"],
+    code: `
+    $onlyIf[$customID==levelingresetspecificusers;]
+
+    $interactionUpdate[$title[Reset for specific users]
+    $description[Select the users to reset using the menu below.
+
+    You can select up to 20 users to reset their progress.
+    ]
+    $color[$getGlobalVar[embedcolor]]
+    $addActionRow
+    $addUserSelectMenu[levelingresetspecificusersmenu;Select users to reset;1;20;false]
+    $addActionRow
+    $addButton[levelingresetusermanuallywithID;Reset manually with ID;Secondary]
+    ]
+    `
+},{
+    type: "interactionCreate",
+    allowedInteractionTypes: ["selectMenu"],
+    code: `
+    $onlyIf[$customID==levelingresetspecificusersmenu;]
+
+    $arrayLoad[users;, ;$selectMenuValues]
+
+    $onlyIf[$arrayEvery[users;selectedIDs;$checkCondition[$isBot[$env[selectedIDs]]==false]];$interactionReply[You cannot select bots!
+    $ephemeral
+    ]]
+
+    $arrayForEach[users;IDs;
+    $deleteMemberVar[level;$env[IDs]]
+    $deleteMemberVar[previouslevel;$env[IDs]]
+    $deleteMemberVar[xp;$env[IDs]]
+    $deleteMemberVar[xpLimit;$env[IDs]]
+    ]
+
+    $interactionReply[Successfully reset the progress of selected users!
+    $ephemeral
+    ]
+
+    `
+    },{
+    type: "interactionCreate",
+    allowedInteractionTypes: ["button"],
+    code: `
+    $onlyIf[$customID==levelingresetusermanuallywithID;]
+
+    $showModal
+    $modal[levelingresetuserIDmodal;Reset for specific user]
+    $addTextInput[idInput;Id of the user to reset;Short;true;e.g, $authorID;;0;200]
+    `
+    },{
+    type: "interactionCreate",
+    allowedInteractionTypes: ["modal"],
+    code: `
+    $onlyIf[$customID==levelingresetuserIDmodal;]
+    $let[input;$input[idInput]]
+
+    $onlyIf[$userExists[$get[input]]==true;$interactionReply[Please provide a valid user ID.
+    $ephemeral
+    ]]
+
+    $onlyIf[$isBot[$get[input]]==false;$interactionReply[Bots do not have any Leveling data.
+    $ephemeral
+    ]]
+
+    $jsonLoad[datachecker;$searchDB[xp;$get[input];member;;$guildID]]
+
+    $onlyIf[$env[datachecker;0;value]!=;$interactionReply[This user does not seem to have Leveling data in this server.
+    $ephemeral
+    ]]
+
+    $deleteMemberVar[level;$get[input]]
+    $deleteMemberVar[previouslevel;$get[input]]
+    $deleteMemberVar[xp;$get[input]]
+    $deleteMemberVar[xpLimit;$get[input]]
+
+    $interactionReply[Successfully reset the progress of $username[$get[input]]!
+    $ephemeral
+    ]
+        `
+    },{
+    type: "interactionCreate",
+    allowedInteractionTypes: ["button"],
+    code: `
 $onlyIf[$customID==levelingchannelsetup;]
 
-$let[currentchannel;$advancedReplace[$checkCondition[$getGuildVar[levelingmessagechannel;$guildID]!=];true;<#$getGuildVar[levelingmessagechannel;$guildID]> (\`$getGuildVar[levelingmessagechannel;$guildID]\`);false;No channel set]]
+$let[currentchannel;$advancedReplace[$checkCondition[$getGuildVar[levelupmessagechannel;$guildID]!=];true;<#$getGuildVar[levelupmessagechannel;$guildID]> (\`$getGuildVar[levelupmessagechannel;$guildID]\`);false;No channel set]]
 
 $interactionUpdate[$title[Channel Setup]
 $description[Choose a channel for Level up messages to be sent in. Use the select menu below for the channel to use!
@@ -124,7 +264,7 @@ $addButton[levelingmsgchannelreset;Reset;Secondary]
 $onlyIf[$customID==levelingchannelselectmenusetup;]
 
 
-$onlyIf[$getGuildVar[levelingmessagechannel;$guildID]!=$selectMenuValues;
+$onlyIf[$getGuildVar[levelupmessagechannel;$guildID]!=$selectMenuValues;
 $interactionReply[This channel is already used for Level up messages. Select a different one instead.
 $ephemeral
 ]
@@ -138,9 +278,9 @@ $ephemeral
 ]
 ]
 
-$setGuildVar[levelingmessagechannel;$selectMenuValues;$guildID]
+$setGuildVar[levelupmessagechannel;$selectMenuValues;$guildID]
 
-$let[currentchannel;$advancedReplace[$checkCondition[$getGuildVar[levelingmessagechannel;$guildID]!=];true;<#$getGuildVar[levelingmessagechannel;$guildID]> (\`$getGuildVar[levelingmessagechannel;$guildID]\`);false;No channel set]]
+$let[currentchannel;$advancedReplace[$checkCondition[$getGuildVar[levelupmessagechannel;$guildID]!=];true;<#$getGuildVar[levelupmessagechannel;$guildID]> (\`$getGuildVar[levelupmessagechannel;$guildID]\`);false;No channel set]]
 
 $let[title;$getEmbeds[$channelID;$messageID;0;title;0]]
 $let[description;$getEmbeds[$channelID;$messageID;0;description;0]]
@@ -169,13 +309,13 @@ $ephemeral
     code: `
 $onlyIf[$customID==levelingmsgchannelreset;]
 
-$onlyIf[$getGuildVar[levelingmessagechannel;$guildID]!=;$interactionReply[
+$onlyIf[$getGuildVar[levelupmessagechannel;$guildID]!=;$interactionReply[
 There's no channel set currently to reset.
 $ephemeral]]
 
-$deleteGuildVar[levelingmessagechannel;$guildID]
+$deleteGuildVar[levelupmessagechannel;$guildID]
 
-$let[currentchannel;$advancedReplace[$checkCondition[$getGuildVar[levelingmessagechannel;$guildID]!=];true;<#$getGuildVar[levelingmessagechannel;$guildID]> (\`$getGuildVar[levelingmessagechannel;$guildID]\`);false;No channel set]]
+$let[currentchannel;$advancedReplace[$checkCondition[$getGuildVar[levelupmessagechannel;$guildID]!=];true;<#$getGuildVar[levelupmessagechannel;$guildID]> (\`$getGuildVar[levelupmessagechannel;$guildID]\`);false;No channel set]]
 
 
 $let[title;$getEmbeds[$channelID;$messageID;0;title;0]]

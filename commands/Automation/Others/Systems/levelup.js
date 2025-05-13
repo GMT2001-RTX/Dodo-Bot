@@ -26,13 +26,13 @@ $setMemberVar[level;$sum[$getMemberVar[level;$authorID];1];$authorID]
 $setMemberVar[previouslevel;$sum[$getMemberVar[previouslevel;$authorID];1];$authorID]
 
 $onlyIf[$getGuildVar[levelingmessagefeature]==on;]
-$onlyIf[$getGuildVar[levelingmessagechannel]!=;]
-$onlyIf[$guildChannelExists[$guildID;$getGuildVar[levelingmessagechannel]]==true;]
-$onlyIf[$channelHasPerms[$getGuildVar[levelingmessagechannel];$clientID;ViewChannel;SendMessages]==true;]
+$onlyIf[$getGuildVar[levelupmessagechannel]!=;]
+$onlyIf[$guildChannelExists[$guildID;$getGuildVar[levelupmessagechannel]]==true;]
+$onlyIf[$channelHasPerms[$getGuildVar[levelupmessagechannel];$clientID;ViewChannel;SendMessages]==true;]
 
 
 
-$sendMessage[$getGuildVar[levelingmessagechannel];
+$sendMessage[$getGuildVar[levelupmessagechannel];
 $callFunction[Levelingmessage;$getGuildVar[levelingmessage]]
 ]
 

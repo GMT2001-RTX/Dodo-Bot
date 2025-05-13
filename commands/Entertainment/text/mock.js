@@ -2,6 +2,7 @@ module.exports = {
 name: "mock",
 info: {
         description: "Adds mockery to your text.",
+        usage: "`mock <text>`",
         perms: "`SendMessages`"
 },
 type: "messageCreate",

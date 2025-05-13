@@ -10,13 +10,11 @@ $ephemeral
 $interactionUpdate[
 $title[Changes]
 $description[
-* Bumped ForgeScript version to \`2.2.0\`
-* Added \`<user.globalname>\` for Welcomer, Leave and Leveling
-* The buttons for moving the Snake in \`snake\` should now be easier to see
-* **Welcomer** & **Leave**: make \`<username>\` return usernames with discriminator for bots
-* Added a command called \`banner\`
-* \`userinfo\` now checks if a bot account is verified
-* Increased page limit in \`leaderboard\` to 20
+* Added command usage section for \`commandinfo\` command
+* Added a new version of Leveling reset in \`leveling\` command
+* \`rebase\` has been removed and re-made as a button for \`about\` instead
+* Added support for RGB code in \`randomcolor\` command
+* Allow downloading the user's avatar in \`avatar\` under 3 image formats as button links
 ]
 $if[$getGlobalVar[pre_release]==on;
 $attachment[./assets/warning.png;warning.png]
@@ -43,9 +41,10 @@ $ephemeral
 $interactionUpdate[
 $title[Bug Fixes]
 $description[
-* Messages from \`leveling\`, \`welcomer\` and \`leave\` are now fully consistent between test and normal ones
-* (Source Code) Fixed a leftover of the old Github username in \`README\` file
-* Improved the grammar of empty leaderboard error seen in \`leaderboard\` cmd
+* Added small grammar fix to a error in \`say\` command
+* Fixed grammar in \`trivia\` command's \`--settings\` at "Type" page
+* (Devs only) Fixed a issue related to \`dev-panel\` in the option to leave a server not being functional
+* (Source code) Removed the last leftover reference to aoi.js in commands
 ]
 $if[$getGlobalVar[pre_release]==on;
 $attachment[./assets/warning.png;warning.png]
@@ -72,13 +71,12 @@ $ephemeral
 $interactionUpdate[
 $title[Other]
 $description[
-* Added support for responding to message edits triggering commands
-* Slightly updated the ordering of sections in \`stats\` command
-* (Source Code) Replaced the package \`dotenv\` with \`@dotenvx/dotenvx\` for better Env support
-* Renamed several placeholders from \`Welcomer\`, \`Leave\` and \`Leveling\` to use \`user\` instead of \`member\`
-* (Source Code) The setup file has been rewritten in Javascript
-* \`--buildinfo\` for \`version\`: Make the displayed build branch hyperlinked
-* Added Green Apple as part of the foods to catch in \`snake\` command
+* (Source code) Bumped \`@dotenvx/dotenvx\` package to version \`1.44.0\`
+* (Source code) Bumped ForgeScript version to \`2.3.0\`
+* \`say\` command no longer uses the old implementation from 2.0.0 of v2
+* Changed the default embed color to be not too similar to v2's one
+  * This is done so to differentiate between Rebase and v2
+* Made it so that the error for non existing banners in \`banner\` refers to you if no one was mentioned
 ]
 $if[$getGlobalVar[pre_release]==on;
 $attachment[./assets/warning.png;warning.png]
@@ -105,7 +103,7 @@ $ephemeral
 $let[releasedatetype;$advancedReplace[$checkCondition[$getGlobalVar[pre_release]==on];true;Last updated on;false;Released on]]
 
 $interactionUpdate[
-$title[Dodo-Bot Version]
+$title[Dodo-Bot version]
     $description[
 * **Version**: $getGlobalVar[version]$if[$getGlobalVar[buildRevision]!=0; (Revision $getGlobalVar[buildRevision])]
 * **Release type**: $getGlobalVar[release_type]

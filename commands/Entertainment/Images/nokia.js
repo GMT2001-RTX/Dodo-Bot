@@ -2,6 +2,7 @@ module.exports = [{
 name: "nokia",
 info: {
         description: "Puts your/users profile picture on a nokia phone.",
+        usage: "`nokia (user)`",
         perms: ["`SendMessages`","`AttachFiles`"]
 },
 type: "messageCreate",

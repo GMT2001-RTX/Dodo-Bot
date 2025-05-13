@@ -2,6 +2,7 @@ module.exports = {
 name: "tictactoe",
 info: {
         description: "Starts a tictactoe match with your opponent.",
+        usage: "`tictactoe <user>`",
         perms: "`SendMessages`"
 },
 aliases: ["ttt"],

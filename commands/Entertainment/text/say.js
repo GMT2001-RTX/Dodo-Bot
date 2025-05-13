@@ -1,31 +1,37 @@
 module.exports = {
-name: "say",
-info: {
+    name: "say",
+    info: {
         description: "Makes the bot say whatever you want.",
+        usage: "`say <text> (flag)`\n\n-# Execute the command first before specifying parameters.",
         perms: "`SendMessages`",
         flags: ["`--embed`"]
-},
-type: "messageCreate",
-code: `$userCooldown[saycmd;3s;Cooldown has been triggered! Please, wait!
-Time remaining: <t:$trunc[$divide[$sum[$getTimestamp;$getUserCooldownTime[saycmd]];1000]]:R>]
-$onlyIf[$message!=;Please say whatever you want.
+    },
+    type: "messageCreate",
+    disableConsoleErrors: true,
+    code: `
+    $userCooldown[saycmd;3s;Cooldown has been triggered! Please, wait!
+    Time remaining: <t:$trunc[$divide[$sum[$getTimestamp;$getUserCooldownTime[saycmd]];1000]]:R>]
+
+    $disableAllMentions
+    $sendMessage[$channelID;What do you want me to say?
 
 **Tip:** To use embed mode, make sure your message contains the flag \`--embed\` to do so.]
-$disableAllMentions
+    $let[id;$awaitMessage[$channelID;msg;$authorID==$getMessage[$channelID;$env[msg];authorID];30s]]
+    $onlyIf[$get[id]!=;Time ran out! You didn't make me say anything!]
+    $let[content;$getMessage[$channelID;$get[id];content]]
 
-$let[clearembedmodewords;$advancedReplace[$checkCondition[$checkContains[$message;--embed;—embed]==true];true;$callFunction[filterembedflag;$message];false;$message]]
-$let[links;$randomText[https://www.youtube.com/watch?v=dQw4w9WgXcQ;$clientInvite[36032]]]
-$onlyIf[$get[clearembedmodewords]!=;You cannot activate embed mode without specifying a text first.]
+    $let[clearembedmodewords;$advancedReplace[$checkCondition[$checkContains[$get[content];--embed;—embed]==true];true;$callFunction[filterembedflag;$get[content]];false;$get[content]]]
+    $let[links;$randomText[https://www.youtube.com/watch?v=dQw4w9WgXcQ;$clientInvite[36032]]]
+    $onlyIf[$get[clearembedmodewords]!=;You cannot activate embed mode without providing a text first.]
 
-$if[$or[$checkContains[$message;--embed;—embed]==true;$charCount[$message]>=2000];
-$author[$username;$userAvatar;$callFunction[userURL;$authorID]]
-$title[Say cmd;$get[links]]
-$description[$get[clearembedmodewords]]
-$color[Random]
-;$get[clearembedmodewords]
+    $sendMessage[$channelID;$if[$or[$checkContains[$get[content];--embed;—embed]==true;$charCount[$get[content]]>=2000];
+    $author[$username;$userAvatar;$callFunction[userURL;$authorID]]
+    $title[Say cmd;$get[links]]
+    $description[$get[clearembedmodewords]]
+    $color[$callFunction[randomColor]]
+    ;$get[clearembedmodewords]
 
- From $hyperlink[\`$username\`;<$callFunction[userURL;$authorID]>]
-]
-
-`
+    From $hyperlink[\`$username\`;<$callFunction[userURL;$authorID]>]
+    ]]
+    `
 }

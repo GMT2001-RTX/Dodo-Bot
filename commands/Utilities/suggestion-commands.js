@@ -33,6 +33,7 @@ $addButton[suggestresetbutton_$authorID;Reset;Secondary]
     name: "suggest",
     info: {
         description: "Starts a suggestion in this server (if the feature is setup).",
+        usage: "`suggest <title/description>`",
         perms: ["`SendMessages`", "`AddReactions`"]
 },
     type: "messageCreate",

@@ -3,6 +3,7 @@ name: "reverse",
 type: "messageCreate",
 info: {
  description: "Makes your text reversed.",
+ usage: "`reverse <text>`",
  perms: "`SendMessages`"
 },
 code: `

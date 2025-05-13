@@ -2,6 +2,7 @@ module.exports = {
 name: "commandinfo",
 info: {
         description: "The command says it all. What else do you expect?",
+        usage: "`commmandinfo <command name>`",
         perms: "`SendMessages`"
     },
 aliases: ["cmdinfo", "ci"],
@@ -18,14 +19,18 @@ $jsonLoad[cmdinfo;$get[command]]
 $let[aliases;$advancedReplace[$checkCondition[$callFunction[commandaliases;$toLowerCase[$message]]==];true;*No aliases exists for this command.*;false;$callFunction[commandaliases;$toLowerCase[$message]]]]
 
 $let[actualname;$commandInfo[messageCreate;$toLowerCase[$message];name]]
+
+$let[usage;$advancedReplace[$checkCondition[$env[cmdinfo;usage]==];true;Has no parameters.;false;$env[cmdinfo;usage]]]
 $onlyIf[$commandInfo[messageCreate;$toLowerCase[$message];info;dev]==;Viewing developer commands is unsupported.]
 
 $attachment[./assets/magnifying-glass-tilted-left.png;magnifying-glass.png]
 $author[Command info looker;attachment://magnifying-glass.png]
 $title[$get[actualname]]
 $description[$env[cmdinfo;description]]
+$addField[Usage;$get[usage]]
 $addField[Permission(s);$callFunction[commandperms;$toLowerCase[$message]]]
 $addField[Aliases;$get[aliases]]
+$footer[<> - required parameter | () - optional parameter]
 $color[$getGlobalVar[embedcolor]]
 $if[$callFunction[commandflags;$toLowerCase[$message]]!=;
 $addActionRow

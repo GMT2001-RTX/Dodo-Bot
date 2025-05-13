@@ -33,3 +33,4 @@ node_modules/
 .yarn-integrity
 .node_repl_history
 *.sh
+*.db

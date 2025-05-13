@@ -2,7 +2,8 @@ module.exports = {
 name: "leaderboard",
 type: "messageCreate",
 info: {
-    description: `Returns Leveling's leaderboard for this server (if enabled).\n\nTo view a page, add a number within the command's argument.`,
+    description: `Returns Leveling's leaderboard for this server (if enabled).`,
+    usage: "`leaderboard (page)`",
     perms: ["`SendMessages`"]
     },
 aliases: ["lb", "leveling-lb", "leveling-leaderboard"],
@@ -28,7 +29,7 @@ $onlyIf[$get[leaderboard]!=;Leaderboard is currently not available. The reasons 
 $author[$guildName;$get[servericon]]
 $title[Leaderboard]
 $description[$get[leaderboard]]
-$footer[Page $get[page]/20 - To switch the page, enter a number.]
+$footer[Page $get[page]/20]
 $color[$getGlobalVar[embedcolor]]
 
 

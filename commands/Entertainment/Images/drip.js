@@ -2,6 +2,7 @@ module.exports = [{
 name: "drip",
 info: {
         description: "Puts your/user's profile picture on a joke image.",
+        usage: "`drip (user)`",
         perms: ["`SendMessages`","`AttachFiles`"]
 },
 type: "messageCreate",

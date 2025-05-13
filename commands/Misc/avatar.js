@@ -2,6 +2,7 @@ module.exports = {
 name: "avatar",
 info: {
         description: "Returns your/users profile picture.",
+        usage: "`avatar (user)`",
         perms: "`SendMessages`"
 },
 type: "messageCreate",
@@ -13,10 +14,12 @@ Time remaining: <t:$trunc[$divide[$sum[$getTimestamp;$getUserCooldownTime[avatar
 $let[user;$findUser[$message;true]]
 $let[username;$advancedReplace[$checkCondition[$callFunction[hasusertag;$get[user]]==true];true;$userTag[$get[user]];false;$username[$get[user]]]]
 $title[$get[username]'s avatar]
-$image[$userAvatar[$get[user];;png]]
+$image[$userAvatar[$get[user];2048;png]]
 $color[$getGlobalVar[embedcolor]]
 $addActionRow
-$addButton[$userAvatar[$get[user];;png];Open in browser;Link]
+$addButton[$userAvatar[$get[user];2048;png];PNG;Link]
+$addButton[$userAvatar[$get[user];2048;jpg];JPG;Link]
+$addButton[$userAvatar[$get[user];2048;webp];WEBP;Link]
 
 `
 }

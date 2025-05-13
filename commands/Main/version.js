@@ -2,6 +2,7 @@ module.exports = {
     name: "version",
     info: {
         description: "View the current version of Dodo-Bot (along with it's changelog)",
+        usage: "`version (flag)`",
         perms: "`SendMessages`",
         flags: ["`--buildinfo`"]
     },
@@ -33,7 +34,7 @@ $color[$getGlobalVar[embedcolor]]
 
 
 ;
-$title[Dodo-Bot Version]
+$title[Dodo-Bot version]
     $description[
 * **Version**: $getGlobalVar[version]$if[$getGlobalVar[buildRevision]!=0; (Revision $getGlobalVar[buildRevision])]
 * **Release type**: $getGlobalVar[release_type]

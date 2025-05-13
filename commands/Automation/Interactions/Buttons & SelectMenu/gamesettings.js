@@ -10,13 +10,13 @@ $ephemeral
 
 $interactionUpdate[
 $title[Type]
-$description[This will decide on how Trivia will start. **Multiple** means the game will start with 4 questions. **Single** means the game will start with a "true" or "false" as the only answer options!]
+$description[This will decide how Trivia will start. **Multiple** means the game will start with 4 answers. **Single** means the game will start with a "true" or "false" as the only answers!]
 $addField[Current Setup;$toTitleCase[$getUserVar[trivia_type]]]
 $color[$getGlobalVar[embedcolor]]
 $addActionRow
 $addStringSelectMenu[triviasettings_$authorID;Select a option;false;1;1]
-$addOption[Type;How the Game should start?;triviatypeoption;;false]
-$addOption[Difficulty;How hard the Game should be?;triviadifficultyoption;;false]
+$addOption[Type;How the game should start?;triviatypeoption;;false]
+$addOption[Difficulty;How hard the game should be?;triviadifficultyoption;;false]
 $addActionRow
 $addButton[triviatypetoggle_$authorID;Toggle;Secondary;🔄]
 ]
@@ -45,8 +45,8 @@ $addField[$get[fieldname];$toTitleCase[$getUserVar[trivia_type]]]
 $color[$getGlobalVar[embedcolor]]
 $addActionRow
 $addStringSelectMenu[triviasettings_$authorID;Select a option;false;1;1]
-$addOption[Type;How the Game should start?;triviatypeoption;;false]
-$addOption[Difficulty;How hard the Game should be?;triviadifficultyoption;;false]
+$addOption[Type;How the game should start?;triviatypeoption;;false]
+$addOption[Difficulty;How hard the game should be?;triviadifficultyoption;;false]
 $addActionRow
 $addButton[triviatypetoggle_$authorID;Toggle;Secondary;🔄]
 ]
@@ -69,13 +69,13 @@ $ephemeral
 
 $interactionUpdate[
 $title[Difficulty]
-$description[This option is dedicated to changing current Difficulty for Trivia. Choose a Difficulty-set available below.]
+$description[This option is dedicated to changing current difficulty for Trivia. Choose a difficulty-set available below.]
 $addField[Current Setup;$toTitleCase[$getUserVar[trivia_difficulty]]]
 $color[$getGlobalVar[embedcolor]]
 $addActionRow
 $addStringSelectMenu[triviasettings_$authorID;Select a option;false;1;1]
-$addOption[Type;How the Game should start?;triviatypeoption;;false]
-$addOption[Difficulty;How hard the Game should be?;triviadifficultyoption;;false]
+$addOption[Type;How the game should start?;triviatypeoption;;false]
+$addOption[Difficulty;How hard the game should be?;triviadifficultyoption;;false]
 $addActionRow
 $addButton[triviaeasyoption_$authorID;Easy;Secondary]
 $addButton[triviamediumoption_$authorID;Medium;Secondary]
@@ -112,8 +112,8 @@ $addField[$get[fieldname];$toTitleCase[$getUserVar[trivia_difficulty]]]
 $color[$getGlobalVar[embedcolor]]
 $addActionRow
 $addStringSelectMenu[triviasettings_$authorID;Select a option;false;1;1]
-$addOption[Type;How the Game should start?;triviatypeoption;;false]
-$addOption[Difficulty;How hard the Game should be?;triviadifficultyoption;;false]
+$addOption[Type;How the game should start?;triviatypeoption;;false]
+$addOption[Difficulty;How hard the game should be?;triviadifficultyoption;;false]
 $addActionRow
 $addButton[triviaeasyoption_$authorID;Easy;Secondary]
 $addButton[triviamediumoption_$authorID;Medium;Secondary]
@@ -144,7 +144,7 @@ $addField[Current Setup;$get[difficulty]]
 $color[$getGlobalVar[embedcolor]]
 $addActionRow
 $addStringSelectMenu[floodsettings_$authorID;Select a option;false;1;1]
-$addOption[Difficulty;How hard the Game should be?;flooddifficultyoption;;false]
+$addOption[Difficulty;How hard the game should be?;flooddifficultyoption;;false]
 $addActionRow
 $addButton[floodeasyoption_$authorID;Easy;Secondary]
 $addButton[floodmediumoption_$authorID;Medium;Secondary]
@@ -182,7 +182,7 @@ $addField[$get[fieldname];$get[difficulty]]
 $color[$getGlobalVar[embedcolor]]
 $addActionRow
 $addStringSelectMenu[floodsettings_$authorID;Select a option;false;1;1]
-$addOption[Difficulty;How hard the Game should be?;flooddifficultyoption;;false]
+$addOption[Difficulty;How hard the game should be?;flooddifficultyoption;;false]
 $addActionRow
 $addButton[floodeasyoption_$authorID;Easy;Secondary]
 $addButton[floodmediumoption_$authorID;Medium;Secondary]

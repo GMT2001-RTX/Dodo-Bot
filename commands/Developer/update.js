@@ -5,7 +5,7 @@ info: {
     perms: ["`SendMessages`"],
     dev: "true"
 },
-aliases: ["restartcmds", "reloadcmds"],
+aliases: ["restartcmds", "reloadcmds", "reload"],
 type: "messageCreate",
 code: `$onlyIf[$checkContains[$clientOwnerID[$getGlobalVar[AllowBotMembers]];$authorID]==true;]
 $updateCommands

@@ -25,7 +25,7 @@ $addOption[Startup;Send messages that the bot is ready to specific channel;start
 $addOption[Show build info;Whether or not to enable "Build Info" button in stats cmd;showbuildinfooption;🛠️;false]
 $addOption[Member requirement;How much members are required for new servers;memberrequirementoption;📋;false]
 $addActionRow
-$addButton[generatedatabasebackup_$authorID;Create Backup;Secondary]
+$addButton[generatedatabasebackup_$authorID;Backup Database;Secondary]
 $addButton[leaveaserverbutton_$authorID;Leave a server;Secondary]
 `
 }

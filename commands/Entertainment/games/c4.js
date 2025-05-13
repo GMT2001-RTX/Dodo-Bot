@@ -2,6 +2,7 @@ module.exports = {
 name: "connect4",
 info: {
         description: "Starts a connect4 game.",
+        usage: "`connect4 <user>`",
         perms: "`SendMessages`"
 },
 aliases: ["c4", "connectfour"],

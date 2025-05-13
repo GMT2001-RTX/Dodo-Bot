@@ -1,20 +1,15 @@
 module.exports = [{
     type: "ready",
     code: `$if[$getGlobalVar[pre_release]==on;
-$djsEval[const chalk = require('chalk')
-
-console.log(chalk.red("Development build detected!\\\\n Using Development builds are not recommended for public usage as they may contain bugs and as such, it is advised to try them for testing purposes only!"))]
+$chalkLog[Development build detected!
+Using Development builds are not recommended for public usage as they may contain bugs and as such, it is advised to try them for testing purposes only!;bold;redBright]
 ]
 $wait[2000]
 $log[Dodo-Bot v$getGlobalVar[version]$if[$getGlobalVar[pre_release]==on; (build $getGlobalVar[buildNumber])]$if[$getGlobalVar[buildRevision]!=0; (Revision $getGlobalVar[buildRevision])] is ready to be used on the client $userTag[$clientID]!]
-$djsEval[const chalk = require('chalk')
 
-console.log(chalk.yellow("Tip: Found an issue? Report it here: https://github.com/ddodogames/Dodo-Bot/issues/new/choose"))
-]
+$chalkLog[Tip: Found an issue? Report it here: https://github.com/ddodogames/Dodo-Bot/issues/new/choose;yellow]
 
-$djsEval[const chalk = require('chalk')
-
-console.log(chalk.cyan("Invite your bot here: $clientInvite[36032]"))]
+$chalkLog[Invite your bot here: $clientInvite[36032];cyan]
 `
 },{
 type: "ready",

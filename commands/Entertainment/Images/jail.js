@@ -2,6 +2,7 @@ module.exports = [{
 name: "jail",
 info: {
         description: "Puts your/users profile picture into behind the bars.",
+        usage: "`jail (user)`",
         perms: ["`SendMessages`","`AttachFiles`"]
 },
 type: "messageCreate",

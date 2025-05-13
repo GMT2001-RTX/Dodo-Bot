@@ -2,6 +2,7 @@ module.exports = [{
 name: "ad",
 info: {
         description: "Make yourself (or user's avatar) a ad.",
+        usage: "`ad (user)`",
         perms: ["`SendMessages`","`AttachFiles`"]
 },
 type: "messageCreate",

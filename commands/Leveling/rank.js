@@ -3,6 +3,7 @@ module.exports = {
     type: "messageCreate",
     info: {
         description: "View your/someone's current level.",
+        usage: "`rank (user)`",
         perms: ["`SendMessages`"]
     },
     aliases: ["level", "lvl"],
