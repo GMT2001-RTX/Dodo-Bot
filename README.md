@@ -31,7 +31,7 @@ It's also used to try new techniques before being ported to the non-Rebase versi
 
 # Requirements
 You can host Rebase version on any Host as long as you meet the following Requirements:
-* Node.js v16 or later is required as older versions are not supported
+* Node.js v18 or later is required as older versions are not supported
 * A host ready to handle Bot's Features (Obviously)
 
 # Configuration
