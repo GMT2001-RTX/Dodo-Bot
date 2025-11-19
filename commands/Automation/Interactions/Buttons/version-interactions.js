@@ -11,6 +11,7 @@ $interactionUpdate[
 $title[Changes]
 $description[
 * Bumped ForgeScript to version \`2.5.0\`
+* Allow resetting levels for specific users in \`leveling\` command
 * Use the normal canary-related links in \`canary\` command (preparation to rename Rebase to v3)
 * Added 3 new commands called \`pet\`, \`periodic-table\` and \`aur\`
 * Rewrote \`guess-the-pokemon\` (internally) and added a loading message
