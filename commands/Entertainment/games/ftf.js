@@ -2,7 +2,7 @@ module.exports = {
     name: "findtheflag",
     info: {
         description: "Starts a game of Find the flag.",
-        perms: "`SendMessages`"
+        perms: ["`SendMessages`"]
     },
     aliases: ["ftf", "find-the-flag"],
     type: "messageCreate",

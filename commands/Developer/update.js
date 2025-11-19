@@ -1,13 +1,13 @@
 module.exports = {
 name: "update",
 info: {
-    description: "Restarts commands to latest changes",
+    description: "Restarts commands to latest changes.",
     perms: ["`SendMessages`"],
     dev: "true"
 },
 aliases: ["restartcmds", "reloadcmds", "reload"],
 type: "messageCreate",
-code: `$onlyIf[$checkContains[$clientOwnerID[$getGlobalVar[AllowBotMembers]];$authorID]==true;]
+code: `$callFunction[Devsonly]
 $updateCommands
 
 $let[total;$sum[$commandCount[messageCreate];$commandCount[interactionCreate]]]

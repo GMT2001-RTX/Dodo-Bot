@@ -1,30 +1,50 @@
 module.exports = {
-name: "guess-the-pokemon",
-info: {
-        description: "Starts a game of Guess The Pokemon.",
-        perms: "`SendMessages`"
-},
-type: "messageCreate",
-aliases: ["gtp"],
-code: `$userCooldown[gtpcmd;3s;Cooldown has been triggered! Please, wait!
-Time remaining: <t:$trunc[$divide[$sum[$getTimestamp;$getUserCooldownTime[gtpcmd]];1000]]:R>]
+    name: "guess-the-pokemon",
+    info: {
+        description: "Starts a game of Guess The Pokemon. (currently disabled)",
+        perms: ["`SendMessages`"]
+    },
+    type: "messageCreate",
+    disableConsoleErrors: true,
+    aliases: ["gtp"],
+    code: `
+    $userCooldown[gtpcmd;3s;Cooldown has been triggered! Please, wait!
+    Time remaining: <t:$trunc[$divide[$sum[$getTimestamp;$getUserCooldownTime[gtpcmd]];1000]]:R>]
+    $onlyIf[disabled!=disabled;This command has been temporarily disabled due to issues.]
 
-$!djsEval[const { GuessThePokemon } = require('discord-gamecord');
+    $let[status;$httpRequest[https://api.gamecord.xyz/pokemon;get]]
+    $onlyIf[$get[status]==200;Unable to fetch data for Pokemon. Please try again later.]
 
-const Game = new GuessThePokemon({
-  message: ctx.message,
-  isSlashGame: false,
-  embed: {
-    title: "Who's The Pokemon",
-    color: '$getGlobalVar[embedcolor]'
-  },
-  timeoutTime: 60000,
-  winMessage: 'You guessed it right! It was a {pokemon}.',
-  loseMessage: 'Better luck next time! It was a {pokemon}.',
-  errMessage: 'Unable to fetch pokemon data! Please try again.',
-  playerOnlyMessage: 'Only {player} can use these buttons.'
-});
+    $let[questionMessage;$sendMessage[$channelID;Loading... Please wait...;true]]
+    $wait[3000]
+    $!editMessage[$channelID;$get[questionMessage];
+    $author[$username;$userAvatar]
+    $title[Who's the Pokemon?]
+    $addField[Types;$djsEval[$httpResult[data;types].join(", ")];true]
+    $addField[Abilities;$djsEval[$httpResult[data;abilities].join(", ")];true]
+    $attachment[$httpResult[data;questionImage];questionImage.png]
+    $image[attachment://questionImage.png]
+    $color[$getGlobalVar[embedcolor]]
+    ]
 
-Game.startGame();
-]`
+    $let[id;$awaitMessage[$channelID;msg;$authorID==$getMessage[$channelID;$env[msg];authorID];60s]]
+    $onlyIf[$get[id]!=;$!editMessage[$channelID;$get[questionMessage];Better luck next time! It was a $httpResult[data;name]]]
+
+
+    $if[$getMessage[$channelID;$get[id];content]==$httpResult[data;name];
+    $!editMessage[$channelID;$get[questionMessage];
+    You guessed it right! It was a $httpResult[data;name].
+    $author[$username;$userAvatar]
+    $title[Who's the Pokemon?]
+    $addField[Types;$djsEval[$httpResult[data;types].join(", ")];true]
+    $addField[Abilities;$djsEval[$httpResult[data;abilities].join(", ")];true]
+    $attachment[$httpResult[data;answerImage];answerImage.png]
+    $image[attachment://answerImage.png]
+    $color[$getGlobalVar[embedcolor]]
+    ]
+    ;
+    $!editMessage[$channelID;$get[questionMessage];Better luck next time! It was a $httpResult[data;name]]
+    ]
+
+    `
 }

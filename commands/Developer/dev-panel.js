@@ -7,7 +7,7 @@ info: {
 },
 aliases: ["devpanel", "developer-panel", "dev-settings"],
 type: "messageCreate",
-code: `$onlyIf[$checkContains[$clientOwnerID[$getGlobalVar[AllowBotMembers]];$authorID]==true;]
+code: `$callFunction[Devsonly]
 $title[Developer panel]
 $description[Welcome to Developer panel! This panel allows you to change some stuff in the bot!
 
@@ -22,7 +22,7 @@ $addOption[Error logging;Log errors to specific channel;errorloggingoption;📢;
 $addOption[Embed color;Change the current embed color used in all cmds;embedcoloroption;🎨;false]
 $addOption[Pre-release;Whether or not to mark the current build as Pre-release;prereleaseoption;⚠️;false]
 $addOption[Startup;Send messages that the bot is ready to specific channel;startupoption;🚦;false]
-$addOption[Show build info;Whether or not to enable "Build Info" button in stats cmd;showbuildinfooption;🛠️;false]
+$addOption[Show build info;Whether or not to display build info in version cmd;showbuildinfooption;🛠️;false]
 $addOption[Member requirement;How much members are required for new servers;memberrequirementoption;📋;false]
 $addActionRow
 $addButton[generatedatabasebackup_$authorID;Backup Database;Secondary]

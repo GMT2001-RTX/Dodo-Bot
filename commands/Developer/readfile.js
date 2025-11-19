@@ -8,7 +8,7 @@ info: {
 },
 aliases: ["viewfile"],
 type: "messageCreate",
-code: `$onlyIf[$checkContains[$clientOwnerID[$getGlobalVar[AllowBotMembers]];$authorID]==true;]
+code: `$callFunction[Devsonly]
 $onlyIf[$message!=;Please enter the file path.]
 $onlyIf[$fileExists[$message]==true;You must specify a file that exists!]
 $if[$charCount[$readFile[$message]]>=2000;

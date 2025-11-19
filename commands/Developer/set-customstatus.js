@@ -8,7 +8,7 @@ info: {
 },
 aliases: ["setstatus", "set-status", "setcustomstatus", "scs"],
 type: "messageCreate",
-code: `$onlyIf[$checkContains[$clientOwnerID[$getGlobalVar[AllowBotMembers]];$authorID]==true;]
+code: `$callFunction[Devsonly]
 $onlyIf[$message!=;Please enter a text to be used for the status!
 
 To reset the status, run \`$getGuildVar[prefix]set-customstatus --reset\` to do so.]

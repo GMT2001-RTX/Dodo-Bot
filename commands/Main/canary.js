@@ -9,14 +9,16 @@ module.exports = {
     code: `$userCooldown[canarycmd;2s;Cooldown has been triggered! Please, wait!
 Time remaining: <t:$trunc[$divide[$sum[$getTimestamp;$getUserCooldownTime[canarycmd]];1000]]:R>]
 $title[About Canary]
-$addField[Introduction;Canary is a way to test pre-release builds of upcoming versions of Dodo-Bot before they eventually release as a stable version.
+$addField[Introduction;Canary is a way to test pre-release builds of upcoming versions of Dodo-Bot before they're released as a stable version.
 
 Builds released in this state are incomplete and may have bugs as a result, so it is not recommended to use them for production purposes.
 ]
-$addField[How to test?;For those who want to host them on their bots. You can download the files from the $hyperlink[canary-rebase;https://github.com/ddodogames/Dodo-Bot/tree/canary-rebase] branch on Github.
+$addField[How to test?;For those who want to host them on their bots. You can download the files from the $hyperlink[canary;https://github.com/ddodogames/Dodo-Bot/tree/canary] branch on Github.
 
-As of now, the official alpha bot for the rebase version is not available yet.
+Alternatively, you can invite the official development bot by clicking the button below to do so.
 ]
 $color[$getGlobalVar[embedcolor]]
+$addActionRow
+$addButton[https://discord.com/api/oauth2/authorize?client_id=970481494797738016&scope=bot+applications.commands&permissions=36032;Invite Canary bot;Link]
 `
 }

@@ -5,6 +5,6 @@ module.exports = {
     Embedcolor: "#3b4960",
     MobileStatus: false,
     disableConsoleErrors: false,
-    AllowBotMembers: false,
+    AllowBotManagers: false,
     respondOnEdit: false
 }

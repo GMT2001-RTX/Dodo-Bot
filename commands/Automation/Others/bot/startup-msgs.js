@@ -1,8 +1,8 @@
 module.exports = [{
-    type: "ready",
+    type: "clientReady",
     code: `$if[$getGlobalVar[pre_release]==on;
 $chalkLog[Development build detected!
-Using Development builds are not recommended for public usage as they may contain bugs and as such, it is advised to try them for testing purposes only!;bold;redBright]
+Using Development builds are not recommended for public usage as they may contain bugs and as such, it is advised to try them for testing purposes only!;bold;red]
 ]
 $wait[2000]
 $log[Dodo-Bot v$getGlobalVar[version]$if[$getGlobalVar[pre_release]==on; (build $getGlobalVar[buildNumber])]$if[$getGlobalVar[buildRevision]!=0; (Revision $getGlobalVar[buildRevision])] is ready to be used on the client $userTag[$clientID]!]
@@ -12,7 +12,7 @@ $chalkLog[Tip: Found an issue? Report it here: https://github.com/ddodogames/Dod
 $chalkLog[Invite your bot here: $clientInvite[36032];cyan]
 `
 },{
-type: "ready",
+type: "clientReady",
 code: `$onlyIf[$getGlobalVar[startupsystem]==on;]
 $onlyIf[$getGlobalVar[startupchannel]!=;]
 $onlyIf[$channelExists[$getGlobalVar[startupchannel]]==true;]

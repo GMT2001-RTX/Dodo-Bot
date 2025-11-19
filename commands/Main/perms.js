@@ -2,7 +2,7 @@ module.exports = {
 name: "perms",
 info: {
         description: "Returns the permissions the bot needs.",
-        perms: "`SendMessages`"
+        perms: ["`SendMessages`"]
     },
 type: "messageCreate",
 code: `$userCooldown[permscmd;2s;Cooldown has been triggered! Please, wait!

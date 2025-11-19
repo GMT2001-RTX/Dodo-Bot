@@ -4,7 +4,7 @@ type: "messageCreate",
 info: {
  description: "Answers with either yes or no to your message.",
  usage: "`yesorno <text>`",
- perms: "`SendMessages`"
+ perms: ["`SendMessages`"]
 },
 code: `
 $userCooldown[yesornocmd;2s;Cooldown has been triggered! Please, wait!

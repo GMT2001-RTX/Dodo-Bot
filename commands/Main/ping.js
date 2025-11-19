@@ -2,7 +2,7 @@ module.exports = {
 name: "ping",
 info: {
         description: "Returns the bot's Latency",
-        perms: "`SendMessages`"
+        perms: ["`SendMessages`"]
 },
 type: "messageCreate",
 code: `$userCooldown[pingcmd;3s;Cooldown has been triggered! Please, wait!

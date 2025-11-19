@@ -4,7 +4,7 @@ type: "messageCreate",
 info: {
  description: "Makes your text reversed.",
  usage: "`reverse <text>`",
- perms: "`SendMessages`"
+ perms: ["`SendMessages`"]
 },
 code: `
 $userCooldown[reversecmd;2s;Cooldown has been triggered! Please, wait!

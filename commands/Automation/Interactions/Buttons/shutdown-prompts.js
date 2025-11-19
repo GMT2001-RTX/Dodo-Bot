@@ -13,8 +13,14 @@ $description[$username[$clientID] is shutting down...]
 $color[Yellow]
 ]
 $wait[5000]
-$interactionFollowUp[Done!]
-$wait[4000]
+$interactionReply[
+    $title[Done!]
+    $description[The bot has been successfully shutdown!]
+    $color[DarkGreen]
+    $attachment[./assets/checkmark.png;checkmark.png]
+    $thumbnail[attachment://checkmark.png]
+]
+$wait[3000]
 $clientDestroy
 `
 },{

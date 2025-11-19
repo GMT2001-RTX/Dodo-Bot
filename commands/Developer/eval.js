@@ -1,14 +1,14 @@
 module.exports = {
 name: "eval",
 info: {
-    description: "Executes codes for testing (in ForgeScript only)",
+    description: "Executes codes for testing (in ForgeScript only).",
     usage: "`eval <code>`",
     perms: ["`SendMessages`"],
     dev: "true"
 },
 aliases: ["e"],
 type: "messageCreate",
-code: `$onlyIf[$checkContains[$clientOwnerID[$getGlobalVar[AllowBotMembers]];$authorID]==true;]
+code: `$callFunction[Devsonly]
 $onlyIf[$message!=;Please provide a code.]
 $eval[$message;true]`
 }

@@ -2,9 +2,10 @@ module.exports = {
     name: "help",
     info: {
         description: "Let's you view commands list",
-        perms: "`SendMessages`"
+        perms: ["`SendMessages`"]
     },
     type: "messageCreate",
+    aliases: ["h"],
     code: `$userCooldown[helpcmd;2s;Cooldown has been triggered! Please, wait!
 Time remaining: <t:$trunc[$divide[$sum[$getTimestamp;$getUserCooldownTime[helpcmd]];1000]]:R>]
 $title[Help Menu]
@@ -16,7 +17,7 @@ $addStringSelectMenu[helpmenu_$authorID;Select a module;false;1;1]
 $addOption[Main;Main module;main;;false]
 $addOption[Entertainment;Entertainment module;fun;;false]
 $addOption[Leveling;Leveling module;leveling;;false]
-$if[$checkContains[$clientOwnerID[$getGlobalVar[AllowBotMembers]];$authorID]==true;
+$if[$checkContains[$clientOwnerID[true;| ];$authorID]==true;
 $addOption[Developer;Developer module;dev;;false]
 ]
 $addOption[Utility;Utility module;util;;false]

@@ -10,11 +10,13 @@ $ephemeral
 $interactionUpdate[
 $title[Changes]
 $description[
-* Added command usage section for \`commandinfo\` command
-* Added a new version of Leveling reset in \`leveling\` command
-* \`rebase\` has been removed and re-made as a button for \`about\` instead
-* Added support for RGB code in \`randomcolor\` command
-* Allow downloading the user's avatar in \`avatar\` under 3 image formats as button links
+* Bumped ForgeScript to version \`2.5.0\`
+* Use the normal canary-related links in \`canary\` command (preparation to rename Rebase to v3)
+* Added 3 new commands called \`pet\`, \`periodic-table\` and \`aur\`
+* Rewrote \`guess-the-pokemon\` (internally) and added a loading message
+* Display leaderboard position of the user in \`rank\` command (only appears for level 2 and higher)
+* Temporarily disable \`guess-the-pokemon\` command (as it stopped working)
+* Added alias \`h\` for \`help\`
 ]
 $if[$getGlobalVar[pre_release]==on;
 $attachment[./assets/warning.png;warning.png]
@@ -41,10 +43,11 @@ $ephemeral
 $interactionUpdate[
 $title[Bug Fixes]
 $description[
-* Added small grammar fix to a error in \`say\` command
-* Fixed grammar in \`trivia\` command's \`--settings\` at "Type" page
-* (Devs only) Fixed a issue related to \`dev-panel\` in the option to leave a server not being functional
-* (Source code) Removed the last leftover reference to aoi.js in commands
+* Fixed a bug where simply sending the bot's prefix (without command name) would execute \`report\` command
+* (Source code) Make dotenvx look for \`.env\` or \`.env.local\` to avoid potential problems
+* Fixed a bug where \`2048\` was using the same name as \`minesweeper\` (i feel dumb asf)
+* Made \`wyr\` command work again
+  * The error message when the command fails is also now less confusing
 ]
 $if[$getGlobalVar[pre_release]==on;
 $attachment[./assets/warning.png;warning.png]
@@ -71,12 +74,13 @@ $ephemeral
 $interactionUpdate[
 $title[Other]
 $description[
-* (Source code) Bumped \`@dotenvx/dotenvx\` package to version \`1.44.0\`
-* (Source code) Bumped ForgeScript version to \`2.3.0\`
-* \`say\` command no longer uses the old implementation from 2.0.0 of v2
-* Changed the default embed color to be not too similar to v2's one
-  * This is done so to differentiate between Rebase and v2
-* Made it so that the error for non existing banners in \`banner\` refers to you if no one was mentioned
+* (Devs only) Bot staff who're in \`ReadOnly\` role can no longer access special commands
+  * This is done so to improve the security of the bot
+  * The setup option \`AllowBotMembers\` is now called \`AllowBotManagers\` as part of this change
+* (Devs only) \`jseval\` command will now always output the code result no matter what
+* (Source code) Bumped \`@dotenvx/dotenvx\` to version \`1.51.1\`
+* (Source code) Bumped \`@tryforge/forge.db\` to version \`2.1.1\`
+* Node.js 18 and later is now required to setup Dodo-Bot (for Rebase)
 ]
 $if[$getGlobalVar[pre_release]==on;
 $attachment[./assets/warning.png;warning.png]

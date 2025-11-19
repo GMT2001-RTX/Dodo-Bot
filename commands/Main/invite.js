@@ -2,7 +2,7 @@ module.exports = {
 name: "invite",
 info: {
         description: "Returns the invite link of the bot under a button.",
-        perms: "`SendMessages`"
+        perms: ["`SendMessages`"]
     },
 type: "messageCreate",
 code: `$userCooldown[invitecmd;2s;Cooldown has been triggered! Please, wait!

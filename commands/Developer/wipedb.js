@@ -7,7 +7,7 @@ module.exports = {
     },
     aliases: ["cleardb", "destroydb", "deletedb"],
     type: "messageCreate",
-    code: `$onlyIf[$checkContains[$clientOwnerID[$getGlobalVar[AllowBotMembers]];$authorID]==true;]
+    code: `$callFunction[Devsonly]
 
     $if[$checkContains[$message;--now;—now]==true
     $wipeDB
@@ -15,8 +15,8 @@ module.exports = {
     ;
     $title[Delete the database]
     $description[Are you sure you want to reset the database? You cannot undo this action once you do it.]
-    $attachment[./assets/dangeroussign.png;dangeroussign.png]
-    $thumbnail[attachment://dangeroussign.png]
+    $attachment[./assets/dangerous-sign.png;dangerous-sign.png]
+    $thumbnail[attachment://dangerous-sign.png]
     $color[Red]
     $addActionRow
     $addButton[wipedbconfirm_$authorID;Yes;Secondary]

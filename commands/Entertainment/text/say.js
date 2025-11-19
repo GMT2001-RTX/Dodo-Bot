@@ -3,7 +3,7 @@ module.exports = {
     info: {
         description: "Makes the bot say whatever you want.",
         usage: "`say <text> (flag)`\n\n-# Execute the command first before specifying parameters.",
-        perms: "`SendMessages`",
+        perms: ["`SendMessages`"],
         flags: ["`--embed`"]
     },
     type: "messageCreate",
@@ -19,8 +19,8 @@ module.exports = {
     $let[id;$awaitMessage[$channelID;msg;$authorID==$getMessage[$channelID;$env[msg];authorID];30s]]
     $onlyIf[$get[id]!=;Time ran out! You didn't make me say anything!]
     $let[content;$getMessage[$channelID;$get[id];content]]
+    $let[clearembedmodewords;$callFunction[filterembedflag;$get[content]]]
 
-    $let[clearembedmodewords;$advancedReplace[$checkCondition[$checkContains[$get[content];--embed;—embed]==true];true;$callFunction[filterembedflag;$get[content]];false;$get[content]]]
     $let[links;$randomText[https://www.youtube.com/watch?v=dQw4w9WgXcQ;$clientInvite[36032]]]
     $onlyIf[$get[clearembedmodewords]!=;You cannot activate embed mode without providing a text first.]
 
@@ -31,7 +31,7 @@ module.exports = {
     $color[$callFunction[randomColor]]
     ;$get[clearembedmodewords]
 
-    From $hyperlink[\`$username\`;<$callFunction[userURL;$authorID]>]
+From $hyperlink[\`$username\`;<$callFunction[userURL;$authorID]>]
     ]]
     `
 }

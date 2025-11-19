@@ -21,7 +21,7 @@ $ephemeral
     $addOption[Main;Main module;main;;false]
     $addOption[Entertainment;Entertainment module;fun;;false]
     $addOption[Leveling;Leveling module;leveling;;false]
-   $if[$checkContains[$clientOwnerID[$getGlobalVar[AllowBotMembers]];$authorID]==true;
+   $if[$checkContains[$clientOwnerID[true;| ];$authorID]==true;
     $addOption[Developer;Developer module;dev;;false]
 ]
     $addOption[Utility;Utility module;util;;false]
@@ -44,7 +44,7 @@ $ephemeral
 \`howgamer\`, \`whoasked\`, \`8ball\`, \`say\`, \`reverse\`, \`randomtopic\`, \`joke\`, \`clap\`, \`mock\`, \`yesorno\`, \`lulcat\`, \`fact\`
 ]
     $addField[**Images**;
-\`gun\`, \`jail\`, \`nokia\`, \`ad\`, \`drip\`, \`invert\`, \`wanted\`, \`comment\`, \`whereiseveryone\`, \`clown\`
+\`gun\`, \`jail\`, \`nokia\`, \`ad\`, \`drip\`, \`invert\`, \`pet\`, \`wanted\`, \`comment\`, \`whereiseveryone\`, \`clown\`
 ]
     $color[$getGlobalVar[embedcolor]]
     $addActionRow
@@ -52,9 +52,9 @@ $ephemeral
     $addOption[Main;Main module;main;;false]
     $addOption[Entertainment;Entertainment module;fun;;false]
     $addOption[Leveling;Leveling module;leveling;;false]
-    $if[$checkContains[$clientOwnerID[$getGlobalVar[AllowBotMembers]];$authorID]==true;
+    $if[$checkContains[$clientOwnerID[true;| ];$authorID]==true;
     $addOption[Developer;Developer module;dev;;false]
-]
+    ]
     $addOption[Utility;Utility module;util;;false]
     ]`
 },{
@@ -76,9 +76,9 @@ $ephemeral
     $addOption[Main;Main module;main;;false]
     $addOption[Entertainment;Entertainment module;fun;;false]
     $addOption[Leveling;Leveling module;leveling;;false]
-    $if[$checkContains[$clientOwnerID[$getGlobalVar[AllowBotMembers]];$authorID]==true;
+    $if[$checkContains[$clientOwnerID[true;| ];$authorID]==true;
     $addOption[Developer;Developer module;dev;;false]
-]
+    ]
     $addOption[Utility;Utility module;util;;false]
     ]`
 },{
@@ -99,16 +99,16 @@ $ephemeral
 $addField[**Info**;
 \`userinfo\`, \`serverinfo\`]
 $addField[**Miscellaneous**;
-\`randomcolor\`, \`avatar\`, \`banner\`, \`morse\`, \`suggest\`]
+\`randomcolor\`, \`avatar\`, \`banner\`, \`morse\`, \`aur\`, \`periodic-table\`, \`suggest\`]
     $color[$getGlobalVar[embedcolor]]
     $addActionRow
     $addStringSelectMenu[helpmenu_$authorID;Select a module;false;1;1]
     $addOption[Main;Main module;main;;false]
     $addOption[Entertainment;Entertainment module;fun;;false]
     $addOption[Leveling;Leveling module;leveling;;false]
-    $if[$checkContains[$clientOwnerID[$getGlobalVar[AllowBotMembers]];$authorID]==true;
+    $if[$checkContains[$clientOwnerID[true;| ];$authorID]==true;
     $addOption[Developer;Developer module;dev;;false]
-]
+    ]
     $addOption[Utility;Utility module;util;;false]
     ]`
 },{
@@ -134,9 +134,9 @@ $addField[**Bot Management**;
     $addOption[Main;Main module;main;;false]
     $addOption[Entertainment;Entertainment module;fun;;false]
     $addOption[Leveling;Leveling module;leveling;;false]
-    $if[$checkContains[$clientOwnerID[$getGlobalVar[AllowBotMembers]];$authorID]==true;
+    $if[$checkContains[$clientOwnerID[true;| ];$authorID]==true;
     $addOption[Developer;Developer module;dev;;false]
-]
+    ]
     $addOption[Utility;Utility module;util;;false]
     ]`
 }]

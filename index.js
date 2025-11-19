@@ -1,19 +1,17 @@
 const config = require("./config.js");
-const functions = require("./handlers/functions.js");
 
 const { ForgeClient } = require("@tryforge/forgescript")
 const { ForgeDB } = require("@tryforge/forge.db")
-require('@dotenvx/dotenvx').config({ignore: ['MISSING_ENV_FILE'], strict: false, quiet: true}) // Enable env support in local hosting
+require('@dotenvx/dotenvx').config({path: ['.env.local', '.env'], ignore: ['MISSING_ENV_FILE'], strict: false, quiet: true, opsOff: true}) // Enable env support in local hosting
 
 // Client initialization
    const client = new ForgeClient({
-    "intents": ["Guilds", "GuildMessages", "GuildMembers", "MessageContent", "GuildPresences", "GuildModeration"], // Intents
-    "prefixes": ["$getGuildVar[prefix]"], // Custom prefix system
-    "events": ["ready", "error", "interactionCreate", "messageCreate", "messageDelete", "messageUpdate", "guildMemberAdd", "guildMemberRemove", "guildBanAdd", "guildBanRemove", "guildCreate"], // Setup ForgeScript events
-    "extensions": [ // Load extensions
+    intents: ["Guilds", "GuildMessages", "GuildMembers", "MessageContent", "GuildPresences", "GuildModeration"], // Intents
+    prefixes: ["$getGuildVar[prefix]"], // Custom prefix system
+    events: ["clientReady", "error", "interactionCreate", "messageCreate", "messageDelete", "messageUpdate", "guildMemberAdd", "guildMemberRemove", "guildBanAdd", "guildBanRemove", "guildCreate"], // Setup ForgeScript events
+    extensions: [ // Load extensions
     new ForgeDB({
-    type: "better-sqlite3",
-    database: "./database/forge.db"
+    type: "better-sqlite3"
     })
     ],
    mobile: config.MobileStatus, // Mobile status
@@ -23,10 +21,10 @@ require('@dotenvx/dotenvx').config({ignore: ['MISSING_ENV_FILE'], strict: false,
 })
 
 // Handlers
-   client.commands.load("commands")
+client.commands.load("./commands")
 ForgeDB.variables(require("./handlers/variables.js"));
-functions.forEach((func) => client.functions.add(func));
+client.functions.add(...require("./handlers/functions.js"));
 // Your bot token
-   client.login(process.env.BotToken || config.BotToken);
+client.login(process.env.BotToken || config.BotToken);
 
  

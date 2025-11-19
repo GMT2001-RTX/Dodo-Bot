@@ -17,7 +17,7 @@ $onlyIf[$isInteger[$get[page]]==true;A invalid page has been entered. Please spe
 $onlyIf[$get[page]>=1;You can't go less than page 1.]
 $onlyIf[$get[page]<=20;You can only switch up to page 20.]
 
-$let[leaderboard;$memberLeaderboard[level;$guildID;asc;20;$get[page];
+$let[leaderboard;$memberLeaderboard[level;$guildID;desc;20;$get[page];
 ;leaderboard;position;$return[$switch[$env[position];$case[1;🥇] $case[2;🥈] $case[3;🥉]] $env[position] - $username[$env[leaderboard;id]] - Level $env[leaderboard;value]]]]
 $let[servericon;$advancedReplace[$checkCondition[$guildIcon==];true;$userDefaultAvatar[$clientID];false;$guildIcon]]
 

@@ -7,14 +7,14 @@ info: {
     dev: "true"
 },
 type: "messageCreate",
-code: `$onlyIf[$checkContains[$clientOwnerID[$getGlobalVar[AllowBotMembers]];$authorID]==true;]
+code: `$callFunction[Devsonly]
 
 $if[$checkContains[$message;--now;—now]==true;
 $clientDestroy;
 $title[Shutdown]
 $description[Do you really want to shutdown the bot? This will simply stop your bot from running. To turn on the bot, you need to go through your host to start it again.]
-$attachment[./assets/dangeroussign.png;dangeroussign.png]
-$thumbnail[attachment://dangeroussign.png]
+$attachment[./assets/dangerous-sign.png;dangerous-sign.png]
+$thumbnail[attachment://dangerous-sign.png]
 $color[Red]
 $addActionRow
 $addButton[shutdownconfirm_$authorID;Yes;Secondary]

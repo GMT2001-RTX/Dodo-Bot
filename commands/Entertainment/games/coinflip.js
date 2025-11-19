@@ -2,7 +2,7 @@ module.exports = {
 name: "coinflip",
 info: {
         description: "Returns either Heads or Tails.",
-        perms: "`SendMessages`"
+        perms: ["`SendMessages`"]
 },
 aliases: ["cf"],
 type: "messageCreate",

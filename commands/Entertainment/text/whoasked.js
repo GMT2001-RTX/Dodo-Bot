@@ -3,7 +3,7 @@ name: "whoasked",
 type: "messageCreate",
 info: {
  description: "Searches for Askers (although mostly useless).",
- perms: "`SendMessages`"
+ perms: ["`SendMessages`"]
 },
 code: `
 $userCooldown[whoaskedcmd;2s;Cooldown has been triggered! Please, wait!

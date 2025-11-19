@@ -13,7 +13,13 @@ module.exports = [{
         $color[Yellow]
     ]
     $wait[5000]
-    $interactionFollowUp[Done!]
+    $interactionReply[
+    $title[Done!]
+    $description[The database has been successfully deleted!]
+    $color[DarkGreen]
+    $attachment[./assets/checkmark.png;checkmark.png]
+    $thumbnail[attachment://checkmark.png]
+    ]
     $wipeDB
     `
 },{

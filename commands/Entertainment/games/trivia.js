@@ -3,8 +3,8 @@ name: "trivia",
 info: {
         description: "Starts a game of Trivia (pass the flag `--settings` to open the settings).",
         usage: "`trivia (flag)`",
-        perms: "`SendMessages`",
-        flags: "`--settings`"
+        perms: ["`SendMessages`"],
+        flags: ["`--settings`"]
 },
 aliases: ["triv"],
 type: "messageCreate",

@@ -14,27 +14,6 @@ $let[topics;$randomText[Did you go out today?;What did you eat today?;What are y
     $return[$get[answers]]
 `
   },{
-    name: "commandperms",
-    params: ["name"],
-    code: `$jsonLoad[perms;$commandInfo[messageCreate;$env[name];info;perms]]
-$let[check;$advancedReplace[$checkCondition[$arrayJoin[perms;, ]==];true;$commandInfo[messageCreate;$env[name];info;perms];false;$arrayJoin[perms;, ]]]
-    $return[$get[check]]
-    `
-  },{
-    name: "commandaliases",
-    params: ["name"],
-    code: `$jsonLoad[aliases;$commandInfo[messageCreate;$env[name];aliases]]
-$let[check;$advancedReplace[$checkCondition[$arrayJoin[aliases;, ]==];true;$commandInfo[messageCreate;$env[name];aliases];false;$arrayJoin[aliases;, ]]]
-    $return[$get[check]]
-    `
-  },{
-    name: "commandflags",
-    params: ["name"],
-    code: `$jsonLoad[flags;$commandInfo[messageCreate;$env[name];info;flags]]
-$let[check;$advancedReplace[$checkCondition[$arrayJoin[flags;, ]==];true;$commandInfo[messageCreate;$env[name];info;flags];false;$arrayJoin[flags;, ]]]
-    $return[$get[check]]
-    `
-  },{
     name: "filterembedflag",
     params: ["content"],
     code: `
@@ -202,5 +181,25 @@ $let[message;$replace[$replace[$replace[$replace[$replace[$replace[$replace[$rep
     $let[content;$advancedReplace[$env[text];<user.mention>;<@$authorID>;<user.username>;$username;<oldlevel>;$getMemberVar[previouslevel];<newlevel>;$getMemberVar[level];<user.displayname>;$userDisplayname;<user.globalname>;$get[globalname]]]
 
     $return[$get[content]]
+    `
+},{
+    name: "Devsonly",
+    params: [],
+    code: `
+    $return[
+    $if[$and[$getGlobalVar[AllowBotManagers]==true;$botTeamID!=];
+    $arrayLoad[users;, ;$botTeamMembers[id]]
+    $arrayLoad[roles;, ;$botTeamMembers[role]]
+    $arrayLoad[membershipstate;, ;$botTeamMembers[membership]]
+
+    $onlyIf[$checkContains[$arrayJoin[users;, ];$authorID]==true;]
+    $onlyIf[$env[membershipstate;$arrayIndexOf[users;$authorID]]==Accepted;]
+    $onlyIf[$env[roles;$arrayIndexOf[users;$authorID]]!=ReadOnly;]
+    ;
+    $onlyIf[$checkContains[$clientOwnerID[false];$authorID]==true;]
+    ]
+    ]
+
+
     `
 }]

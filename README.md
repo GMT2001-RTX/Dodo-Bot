@@ -5,7 +5,7 @@ A personal bot project made in ForgeScript aiming to both entertain and provide 
 # What is this
 Dodo-Bot is a personal project that existed since late 2021. It was mainly made for entertainment and such. It is mostly made with the goal mindset of reducing the number of bots needed to do each stuff.
 
-This version of the bot aka rebase is based on the CupcakeX codebase albeit with improvements and new stuff for the sake of learning. Despite this, it's made as a rebase backup if aoi.js was to ever die one day.
+This version of the bot aka rebase is based on the (now abandoned) CupcakeX codebase albeit with improvements and new stuff for the sake of learning. Despite this, it's made as a backup if aoi.js was to ever die one day.
 
 # What does it include?
 * Simple leveling system 
@@ -17,7 +17,7 @@ This version of the bot aka rebase is based on the CupcakeX codebase albeit with
 # Rebase
 Rebase is a special version of Dodo-Bot intended for disastrous situations such as aoi.js suddenly dying one day. In general, it is good to rebase your project for another library so that you always have anything prepared in place which is why this version of Dodo-Bot exists. It is similar to v2 but with using ForgeScript which is a mix between aoi and bdfd.
 
-During the earlier development, it was originally going to be Dodo-Bot v3 before it was decided that v3 would be repurposed for aoi.js v7 instead. As a result, you will find things that did not exist in v2 such as advanced Leveling reset for example.
+During the early days of it's development, it was originally going to be Dodo-Bot v3 before it was decided that v3 would be repurposed for aoi.js v7 instead. As a result, you will find things that did not exist in v2 such as advanced Leveling reset for example.
 
 It's also used to try new techniques before being ported to the non-Rebase version of the bot!
 
@@ -34,7 +34,7 @@ You can host Rebase version on any Host as long as you meet the following Requir
 * Node.js v16 or later is required as older versions are not supported
 * A host ready to handle Bot's Features (Obviously)
 
-# config.js
+# Configuration
 Dodo-Bot allows you to change some options before turning it on. To do this, check out the `config.js` file present in the source code itself which contains available options to change from!
 
 # Credits

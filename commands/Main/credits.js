@@ -2,7 +2,7 @@ module.exports = {
     name: "credits",
     info: {
         description: "Returns people who're credited in the bot.",
-        perms: "`SendMessages`"
+        perms: ["`SendMessages`"]
     },
     type: "messageCreate",
     code: `$userCooldown[creditscmd;2s;Cooldown has been triggered! Please, wait!
@@ -13,7 +13,7 @@ $description[
 * $username[431749535656837130] - Inspiration to improve some commands
 * $username[769525910164471821] - For some ideas
 * BotForge server - For a lot of help
-* $hyperlink[discordicon.com;https://discordicon.com/icons-editor] - For most of the icons used in commands
+* $hyperlink[discotools.xyz;https://discotools.xyz/icons-editor] - For most of the icons used in commands
 ]
 $color[$getGlobalVar[embedcolor]]
 $addActionRow
