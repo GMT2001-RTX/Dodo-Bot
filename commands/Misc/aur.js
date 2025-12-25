@@ -8,7 +8,7 @@ module.exports = {
     type: "messageCreate",
     aliases: ["aur-search", "aursearch"],
     code: `$userCooldown[aurcmd;3s;Cooldown has been triggered! Please, wait!
-    Time remaining: <t:$trunc[$divide[$sum[$getTimestamp;$getUserCooldownTime[aurcmd]];1000]]:R>]
+Time remaining: <t:$trunc[$divide[$sum[$getTimestamp;$getUserCooldownTime[aurcmd]];1000]]:R>]
 
 
 $onlyIf[$message!=;Please type a package name to search in AUR.]
@@ -16,10 +16,11 @@ $let[status;$httpRequest[https://aur.archlinux.org/rpc/v5/info?arg%5B%5D=$messag
 $onlyIf[$get[status]==200;Unable to search a package in AUR. Please try again later.]
 $onlyIf[$httpResult[resultcount]!=0;Cannot find that package.]
 
+$attachment[./assets/archlinux.png;archlinux.png]
 $let[keywords;$if[$djsEval[$httpResult[results;0;Keywords].join(", ")]!=;$djsEval[$httpResult[results;0;Keywords].join(", ")];None]]
 $let[submitter;$if[$httpResult[results;0;Submitter]!=;$httpResult[results;0;Submitter];none]]
 
-$author[Arch User Repository;;https://aur.archlinux.org/]
+$author[Arch User Repository;attachment://archlinux.png;https://aur.archlinux.org/]
 $title[$httpResult[results;0;Name] $get[outdatedindicator];https://aur.archlinux.org/packages/$httpResult[results;0;Name]]
 $description[$httpResult[results;0;Description]]
 $addField[General;

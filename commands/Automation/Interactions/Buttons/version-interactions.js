@@ -10,14 +10,11 @@ $ephemeral
 $interactionUpdate[
 $title[Changes]
 $description[
-* Bumped ForgeScript to version \`2.5.0\`
-* Allow resetting levels for specific users in \`leveling\` command
-* Use the normal canary-related links in \`canary\` command (preparation to rename Rebase to v3)
-* Added 3 new commands called \`pet\`, \`periodic-table\` and \`aur\`
-* Rewrote \`guess-the-pokemon\` (internally) and added a loading message
-* Display leaderboard position of the user in \`rank\` command (only appears for level 2 and higher)
-* Temporarily disable \`guess-the-pokemon\` command (as it stopped working)
-* Added alias \`h\` for \`help\`
+* Removed all references to Rebase (it has been renamed to v3)
+* Re-added the polls feature (I'm stupid for not noticing this)
+* Added a bunch of new topics to \`randomtopic\` command
+* Added a custom Arch logo to \`aur\` command
+* Ported \`couldread\` command from v2 to here
 ]
 $if[$getGlobalVar[pre_release]==on;
 $attachment[./assets/warning.png;warning.png]
@@ -44,11 +41,10 @@ $ephemeral
 $interactionUpdate[
 $title[Bug Fixes]
 $description[
-* Fixed a bug where simply sending the bot's prefix (without command name) would execute \`report\` command
-* (Source code) Make dotenvx look for \`.env\` or \`.env.local\` to avoid potential problems
-* Fixed a bug where \`2048\` was using the same name as \`minesweeper\` (i feel dumb asf)
-* Made \`wyr\` command work again
-  * The error message when the command fails is also now less confusing
+* Did some rewording to fix grammar
+* \`guess-the-pokemon\` command now works again
+* Block more ways used to show things like slash cmds when setting prefix in \`prefix\` command
+* Fixed some commands like \`fact\` not working
 ]
 $if[$getGlobalVar[pre_release]==on;
 $attachment[./assets/warning.png;warning.png]
@@ -75,13 +71,12 @@ $ephemeral
 $interactionUpdate[
 $title[Other]
 $description[
-* (Devs only) Bot staff who're in \`ReadOnly\` role can no longer access special commands
-  * This is done so to improve the security of the bot
-  * The setup option \`AllowBotMembers\` is now called \`AllowBotManagers\` as part of this change
-* (Devs only) \`jseval\` command will now always output the code result no matter what
-* (Source code) Bumped \`@dotenvx/dotenvx\` to version \`1.51.1\`
-* (Source code) Bumped \`@tryforge/forge.db\` to version \`2.1.1\`
-* Node.js 18 and later is now required to setup Dodo-Bot (for Rebase)
+* Updated credits in \`credits\` command
+* Added weight and height information to \`guess-the-pokemon\` command
+* (Source code) Refresh the readme file and bumped 2 packages
+* (Source code) Updated \`better-sqlite3\` to version \`12.5.0\` to support newer Node.js releases
+  * This also means that Node.js v20 or later is now required again to use Dodo-Bot after previously sitting on v18 from 3.0.1
+* Updated the embed color to \`#404060\` as the replacement for v2 one
 ]
 $if[$getGlobalVar[pre_release]==on;
 $attachment[./assets/warning.png;warning.png]
