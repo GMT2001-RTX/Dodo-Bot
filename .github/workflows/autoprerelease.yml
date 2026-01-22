@@ -25,7 +25,7 @@ jobs:
         uses: release-it/release-it@v1
         with:
           # Configure for pre-release (e.g., beta)
-          preRelease: canary
+          preRelease: devbuild
           # Automatically generate changelog
           infile: CHANGELOG.md
           # Skip npm publish if you only want GitHub release
