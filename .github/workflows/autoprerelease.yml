@@ -1,4 +1,4 @@
-name: Auto Pre-Release
+name: Latest Build
 
 on:
   push:
