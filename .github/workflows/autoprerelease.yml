@@ -1,0 +1,34 @@
+name: Auto Pre-Release
+
+on:
+  push:
+    branches: [ canary ] # Trigger on push to 'canary' branch
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Needed for changelog generation
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install release-it
+        run: npm install -g release-it
+
+      - name: Create pre-release build
+        uses: release-it/release-it@v1
+        with:
+          # Configure for pre-release (e.g., beta)
+          preRelease: canary
+          # Automatically generate changelog
+          infile: CHANGELOG.md
+          # Skip npm publish if you only want GitHub release
+          # npm: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
