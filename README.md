@@ -15,22 +15,31 @@ This version of the bot aka v3 is based on the (now abandoned and silently disco
 * Logging stuff (like ban logs)
 
 # History of v3
-During the early days of the development (while at the same time 2.1.0 was being worked on), v3 was originally going to replace v2 once it's released but this was later delayed and it got renamed to "Rebase". This was finally reversed in 3.0.2 as it became clear that things had to eventually change.
+Before late 2023, v3 was initially just a thought to find a way to not rely on aoi.js. This included private test builds for this version that led to nowhere as there was no clear vision at all at the time except for the main idea of killing reliance on aoi.
 
-The purpose of this version is to keep Dodo-Bot alive without relying on aoi.js given that it's pretty much now in eol state. Being based on ForgeScript, advanced stuff can finally be done in the bot as it was previously not possible in v2 and older.
+It wasn't until towards the final months of 2023 that i discovered a fitting alternative for aoi.js called "ForgeScript" and i went ahead to start working on test builds with it which eventually became v3 after it initially evolved into "Rebase" (which is explained below).
+
+During the early days of development (while at the same time 2.1.0 was being worked on), v3 was originally going to replace v2 once it's released but this was later delayed and it got renamed to "Rebase". This was finally reversed around the release of 3.0.2 as it became clear that things had to eventually change.
+
+The purpose of this version is to keep Dodo-Bot alive without relying on aoi.js given that it's pretty much now in "not so good" state. Being based on ForgeScript, advanced stuff can finally be done in the bot as it was previously not possible in v2 and older.
 
 This bot purely exists just because i got sick of some verified bot but you can use this project and also learn from it if you happen to be using ForgeScript!
 
 ### What about v2?
-V2 has been discontinued following the eol of aoi.js because there doesn't seem to be a good reason to still maintain it if the package it's relying on is left to rot. It just creates issues nobody wants and it means missing out on improvements and fixes for any breaking changes caused by Discord itself.
+When aoi.js was originally announced to be EOL on 3th December 2025 by one of it's devs, v3 became the default version as a way to make the bot not fall in the dead list.
 
-You can still use it because nothing is stopping you from doing so but being discontinued means it won't be updated and any bugs will remain unfixed. It can also eventually break in the future since outdated stuff do break by some major changes.
+Apparently however, this was reversed later on 27th December of the same year above by the main owner of aoi.js which seemed pretty weird to me. As someone who saw aoi.js in a dying state constantly, i began to notice a weird pattern where it's like it desperately tries to stay alive while at the same time it fails doing so. By then, it was already too late for me to reverse my decision on making v3 the default and reviving v2.
+
+Also, if aoi.js revival actually led to anywhere then it would have still contained breaking changes from say, some major version (like v7) that would make it still useless to maintain Dodo-Bot v2 because it relies on aoi.js v6 to offer the bot's features to users.
+
+Despite this however, v2 will be temporarily maintained for a period of time since apparently the migration to other alternatives were not instant.
+
 
 # Versions
 | Release | Description | Status |
 | :------- | :------: | -------: |
 | [**v1**](https://github.com/ddodogames/Dodo-Bot/tree/v1)  | The discontinued version of Dodo-Bot. It had a bad start with bunch of bugs due to me being newbie in aoi.js at the time.  | Discontinued  |
-| [**v2**](https://github.com/ddodogames/Dodo-Bot/tree/v2)  | The version 2 of the bot. Based on aoi.js v6!  | Discontinued  |
+| [**v2**](https://github.com/ddodogames/Dodo-Bot/tree/v2)  | The version 2 of the bot. Based on aoi.js v6!  | Maintained, sorta of (in LTS state)  |
 | [**v3 (current)**](https://github.com/ddodogames/Dodo-Bot/tree/v3)  | The current version of the bot. Gets both fixes and improvements!  | Maintained  |
 | [**canary**](https://github.com/ddodogames/Dodo-Bot/tree/canary)  | Development builds of v3. Not recommended for general use. More information can be found [here](https://ddodogames.github.io/dodo-bot-site/advanced/canary/).  | Maintained  |
 

@@ -1,6 +1,8 @@
 module.exports = {
+name: "Reset on leave",
 type: "guildMemberRemove",
-code: `$onlyIf[$isBot==false;]
+allowBots: false,
+code: `
 $onlyIf[$getGuildVar[levelingsystem]==on;]
 $onlyIf[$getGuildVar[levelingresetonleave]==on;]
 

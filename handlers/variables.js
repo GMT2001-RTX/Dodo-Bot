@@ -1,18 +1,19 @@
 const config = require("../config.js");
+const { version } = require('../package.json');
 
 module.exports = {
 // Main variables (don't touch unless you know what you're doing)
-version: "3.0.2",
-versionCodename: "Quiet Tree",
+version: "3.0.3",
+versionCodename: "Mercury",
+versionString: version,
 islibraryversiondev: "off",
 release_type: "Stable",
 pre_release: "off",
 DevReleaseTypeToSet: "Canary",
-buildNumber: "2407",
+buildNumber: "2415",
 buildStatus: "Complete",
 buildBranch: "v3",
-buildRevision: "0",
-buildDate: "1766692841172",
+buildDate: "1770847034889",
 showbuildinfo: "off",
 AllowBotManagers: config.AllowBotManagers,
 prefix: config.prefix,

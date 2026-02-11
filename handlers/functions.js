@@ -22,7 +22,11 @@ $let[message;$advancedReplace[$env[text];--embed;;—embed;]]
     `
   },{
     name: "hasusertag",
-    params: ["userID"],
+    params: [{
+        'name': 'userID',
+        'type': 'String',
+        'required': false
+    }],
     code: `
 $let[user;$findUser[$env[userID];true]]
 $let[result;$checkCondition[$charCount[$discriminator[$get[user]]]!=1]]
@@ -31,10 +35,19 @@ $let[result;$checkCondition[$charCount[$discriminator[$get[user]]]!=1]]
     `
   },{
     name: "hasnickname",
-    params: ["guildID", "userID"],
+    params: [{
+        'name': 'guildID',
+        'type': 'String',
+        'required': false
+    },{
+        'name': 'userID',
+        'type': 'String',
+        'required': false
+    }],
     code: `
 $let[user;$findUser[$env[userID];true]]
-$let[result;$checkCondition[$nickname[$env[guildID];$get[user]]!=$userDisplayName[$get[user]]]]
+$let[serverID;$advancedReplace[$checkCondition[$env[guildID]==];true;$guildID;false;$env[guildID]]]
+$let[result;$checkCondition[$nickname[$get[serverID];$get[user]]!=$userDisplayName[$get[user]]]]
 
     $return[$get[result]]
     `
@@ -42,7 +55,7 @@ $let[result;$checkCondition[$nickname[$env[guildID];$get[user]]!=$userDisplayNam
     name: "excludespecialchars",
     params: ["content"],
     code: `
-$let[message;$replace[$replace[$replace[$replace[$replace[$replace[$replace[$replace[$replace[$replace[$replace[$replace[$replace[$env[content];+;];-;];/;];%;];&;];$;];#;];^;];(;];);];*;];!;];?;]]
+$let[message;$advancedReplace[$env[content];+;;-;;/;;%;;&;;$;;#;;^;;(;;);;*;;!;;?;]]
 
     $return[$get[message]]
     `
@@ -142,8 +155,13 @@ $let[message;$replace[$replace[$replace[$replace[$replace[$replace[$replace[$rep
     `
 },{
    name: "userURL",
-   params: ["userID"],
-   code: `$return[https://discord.com/users/$env[userID]]`
+   params: [{
+       'name': 'userID',
+       'type': 'String',
+       'required': false
+   }],
+   code: `$let[ID;$advancedReplace[$checkCondition[$env[userID]==];true;$authorID;false;$env[userID]]]
+   $return[https://discord.com/users/$get[ID]]`
 },{
     name: "randomColor",
     params: [],
@@ -201,5 +219,19 @@ $let[message;$replace[$replace[$replace[$replace[$replace[$replace[$replace[$rep
     ]
 
 
+    `
+},{
+    name: "isCustomEmoji",
+    params: ["query"],
+    code: `
+    $let[a;$replaceRegex[$trim[$env[query]];<a?:\\[^:\\]+:\\\\\d{18,19}>;gu;]]
+    $return[$and[$charCount[$trim[$env[query]]]!=0;$charCount[$get[a]]==0]]
+    `
+},{
+    name: "isUnicodeEmoji",
+    params: ["query"],
+    code: `
+    $let[a;$replaceRegex[$trim[$env[query]];\\\\\p{Extended_Pictographic};gu;]]
+    $return[$and[$charCount[$trim[$env[query]]]!=0;$charCount[$get[a]]==0]]
     `
 }]

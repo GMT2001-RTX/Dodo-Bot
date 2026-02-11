@@ -3,7 +3,7 @@ module.exports = {
     info: {
         description: "Returns your/users banner.",
         usage: "`banner (user)`",
-        perms: ["`SendMessages`"]
+        perms: ["`SendMessages`", "`EmbedLinks`"]
     },
     type: "messageCreate",
     aliases: ["userbanner"],
@@ -17,7 +17,7 @@ $let[error;$advancedReplace[$checkCondition[$get[user]==$authorID];true;You don'
 $onlyIf[$userBanner[$get[user]]!=;$get[error]]
 
 $title[$get[username]'s banner]
-$image[$userBanner[$get[user];;png]]
+$image[$userBanner[$get[user]]]
 $color[$getGlobalVar[embedcolor]]
 $addActionRow
 $addButton[$userBanner[$get[user];;png];Open in browser;Link]

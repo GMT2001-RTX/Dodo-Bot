@@ -10,11 +10,8 @@ $ephemeral
 $interactionUpdate[
 $title[Changes]
 $description[
-* Removed all references to Rebase (it has been renamed to v3)
-* Re-added the polls feature (I'm stupid for not noticing this)
-* Added a bunch of new topics to \`randomtopic\` command
-* Added a custom Arch logo to \`aur\` command
-* Ported \`couldread\` command from v2 to here
+* Re-added support for GIF banners in \`banner\` command from v2
+* Added 2 new commands called \`greyscale\` and \`showerthoughts\`
 ]
 $if[$getGlobalVar[pre_release]==on;
 $attachment[./assets/warning.png;warning.png]
@@ -41,10 +38,11 @@ $ephemeral
 $interactionUpdate[
 $title[Bug Fixes]
 $description[
-* Did some rewording to fix grammar
-* \`guess-the-pokemon\` command now works again
-* Block more ways used to show things like slash cmds when setting prefix in \`prefix\` command
-* Fixed some commands like \`fact\` not working
+* (Devs only) Fixed outdated description of "Show build info" option seen in \`dev-panel\` command
+* Require \`EmbedLinks\` as a permission so that commands showing embed work properly
+  * It has been listed in \`perms\` command as a result of this
+* (Pre-release only) Fixed how pre-releases are made by properly following $hyperlink[Semantic Versioning specification;https://semver.org/]
+  * This also makes version string in source code less confusing
 ]
 $if[$getGlobalVar[pre_release]==on;
 $attachment[./assets/warning.png;warning.png]
@@ -71,12 +69,13 @@ $ephemeral
 $interactionUpdate[
 $title[Other]
 $description[
-* Updated credits in \`credits\` command
-* Added weight and height information to \`guess-the-pokemon\` command
-* (Source code) Refresh the readme file and bumped 2 packages
-* (Source code) Updated \`better-sqlite3\` to version \`12.5.0\` to support newer Node.js releases
-  * This also means that Node.js v20 or later is now required again to use Dodo-Bot after previously sitting on v18 from 3.0.1
-* Updated the embed color to \`#404060\` as the replacement for v2 one
+* (Pre-release only) Display version string on console instead of just the version number
+  * Build numbers will also no longer show up for released builds
+* Completely remove version revisions in favor of small hotfix releases
+* Slightly change the description of "Why this exists?" button seen in \`perms\` command
+  * Also shorten the description of \`about\` command
+* (Source code) Slight changes to README such as replacing aoi EOL mentions with the sudden revival
+* (Source code) Bumped ForgeScript and \`@dotenvx/dotenvx\` to their latest version
 ]
 $if[$getGlobalVar[pre_release]==on;
 $attachment[./assets/warning.png;warning.png]
@@ -105,7 +104,7 @@ $let[releasedatetype;$advancedReplace[$checkCondition[$getGlobalVar[pre_release]
 $interactionUpdate[
 $title[Dodo-Bot version]
     $description[
-* **Version**: $getGlobalVar[version]$if[$getGlobalVar[buildRevision]!=0; (Revision $getGlobalVar[buildRevision])]
+* **Version**: $getGlobalVar[version]
 * **Release type**: $getGlobalVar[release_type]
 * **$get[releasedatetype]**: <t:$trunc[$divide[$getGlobalVar[buildDate];1000]]:f>
     ]
