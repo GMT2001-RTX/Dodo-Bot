@@ -15,6 +15,7 @@ jobs:
       run: Expand-Archive bore.zip
     - run: Expand-Archive bot.zip
     - run: move .\bot C:\Users\Public\Desktop\bot
+    - run: npm install discord.js dotenv
     - name: Enable TS
       run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
     - run: Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
